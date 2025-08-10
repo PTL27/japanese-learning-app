@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { Volume2, Search, Filter, Star, BookOpen } from 'lucide-react';
-import { vocabularyN5, playTextToSpeech } from '../utils/japaneseData';
+import React, { useState, useEffect } from 'react';
+import { Volume2, Search, Filter, Star, BookOpen, Users, Loader } from 'lucide-react';
+import { playTextToSpeech } from '../utils/japaneseData';
 
 const VocabularyCard = ({ word, index }) => {
   const categoryColors = {
     'danh từ': 'from-blue-500 to-blue-600',
     'động từ': 'from-green-500 to-green-600',
     'tính từ': 'from-purple-500 to-purple-600',
-    'đại từ': 'from-pink-500 to-pink-600'
+    'đại từ': 'from-pink-500 to-pink-600',
+    'trạng từ': 'from-orange-500 to-orange-600',
+    'liên từ': 'from-teal-500 to-teal-600'
   };
 
   const categoryBorders = {
     'danh từ': 'border-blue-500',
     'động từ': 'border-green-500',
     'tính từ': 'border-purple-500',
-    'đại từ': 'border-pink-500'
+    'đại từ': 'border-pink-500',
+    'trạng từ': 'border-orange-500',
+    'liên từ': 'border-teal-500'
   };
 
   return (
@@ -73,7 +77,9 @@ const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }) => {
     'danh từ': 'from-blue-500 to-blue-600',
     'động từ': 'from-green-500 to-green-600',
     'tính từ': 'from-purple-500 to-purple-600',
-    'đại từ': 'from-pink-500 to-pink-600'
+    'đại từ': 'from-pink-500 to-pink-600',
+    'trạng từ': 'from-orange-500 to-orange-600',
+    'liên từ': 'from-teal-500 to-teal-600'
   };
 
   return (
@@ -101,25 +107,76 @@ const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }) => {
 };
 
 const VocabularyPage = () => {
+  const [selectedLevel, setSelectedLevel] = useState('N5');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [vocabulary, setVocabulary] = useState([]);
+  const [categories, setCategories] = useState(['all']);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const categories = ['all', 'danh từ', 'động từ', 'tính từ', 'đại từ'];
+  // Fetch vocabulary data from API
+  const fetchVocabulary = async (level, category = '', search = '') => {
+    try {
+      setLoading(true);
+      const params = new URLSearchParams({
+        jlpt_level: level,
+        limit: '200'
+      });
+      
+      if (category && category !== 'all') {
+        params.append('category', category);
+      }
+      
+      if (search) {
+        params.append('search', search);
+      }
 
-  const filteredVocabulary = vocabularyN5.filter(word => {
-    const matchesCategory = selectedCategory === 'all' || word.category === selectedCategory;
-    const matchesSearch = 
-      word.japanese.includes(searchTerm) || 
-      word.hiragana.includes(searchTerm) || 
-      word.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      word.meaning.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+      const response = await fetch(`http://localhost:5001/api/vocabulary?${params}`);
+      const data = await response.json();
+      
+      if (data.success) {
+        setVocabulary(data.data);
+      } else {
+        setError('Không thể tải dữ liệu từ vựng');
+      }
+    } catch (err) {
+      console.error('Error fetching vocabulary:', err);
+      setError('Lỗi kết nối đến server');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch categories
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/api/vocabulary/categories');
+      const data = await response.json();
+      
+      if (data.success) {
+        const categoryList = ['all', ...data.data.map(cat => cat.category)];
+        setCategories(categoryList);
+      }
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+    }
+  };
+
+  // Load data when level, category, or search changes
+  useEffect(() => {
+    fetchVocabulary(selectedLevel, selectedCategory, searchTerm);
+  }, [selectedLevel, selectedCategory, searchTerm]);
+
+  // Load categories on mount
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const getCategoryStats = () => {
     const stats = {};
     categories.slice(1).forEach(cat => {
-      stats[cat] = vocabularyN5.filter(word => word.category === cat).length;
+      stats[cat] = vocabulary.filter(word => word.category === cat).length;
     });
     return stats;
   };
@@ -133,15 +190,43 @@ const VocabularyPage = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-6">
             <BookOpen className="w-4 h-4" />
-            <span>N5 Level</span>
+            <span>JLPT Vocabulary</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Từ vựng N5 cơ bản
+            Từ vựng
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Khám phá {vocabularyN5.length} từ vựng thiết yếu cho người mới bắt đầu học tiếng Nhật
+            Khám phá từ vựng JLPT từ cơ bản đến nâng cao
           </p>
+        </div>
+
+        {/* JLPT Level Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/20">
+            <div className="flex space-x-2">
+              {['N5', 'N4'].map(level => (
+                <button
+                  key={level}
+                  onClick={() => setSelectedLevel(level)}
+                  className={`relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                    selectedLevel === level
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg transform scale-105'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
+                  }`}
+                >
+                  {selectedLevel === level && (
+                    <div className="absolute inset-0 bg-white/20 animate-pulse rounded-xl" />
+                  )}
+                  <span className="relative flex items-center space-x-2">
+                    <span>{level}</span>
+                    {level === 'N5' && <Users className="w-4 h-4" />}
+                    {level === 'N4' && <Star className="w-4 h-4" />}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Stats Section */}
@@ -208,25 +293,59 @@ const VocabularyPage = () => {
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-600">
             <span>Hiển thị</span>
-            <span className="font-bold text-green-600">{filteredVocabulary.length}</span>
-            <span>từ vựng</span>
+            <span className="font-bold text-green-600">{vocabulary.length}</span>
+            <span>từ vựng {selectedLevel}</span>
             {searchTerm && <span>cho "{searchTerm}"</span>}
             {selectedCategory !== 'all' && <span>trong "{selectedCategory}"</span>}
           </div>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-16">
+            <div className="inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-4">
+              <Loader className="w-6 h-6 animate-spin text-green-500" />
+              <span className="text-gray-600 font-medium">Đang tải từ vựng...</span>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="text-6xl mb-6">❌</div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Lỗi tải dữ liệu
+              </h3>
+              <p className="text-gray-600 mb-6">
+                {error}
+              </p>
+              <button
+                onClick={() => fetchVocabulary(selectedLevel, selectedCategory, searchTerm)}
+                className="inline-flex items-center space-x-2 bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors font-medium"
+              >
+                <span>Thử lại</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Vocabulary Grid */}
-        {filteredVocabulary.length > 0 ? (
+        {!loading && !error && vocabulary.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            {filteredVocabulary.map((word, index) => (
+            {vocabulary.map((word, index) => (
               <VocabularyCard 
-                key={`${word.japanese}-${index}`} 
+                key={`${word.japanese}-${word.id}`} 
                 word={word} 
-                index={vocabularyN5.indexOf(word)} 
+                index={index} 
               />
             ))}
           </div>
-        ) : (
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && vocabulary.length === 0 && (
           <div className="text-center py-16">
             <div className="max-w-md mx-auto">
               <div className="text-6xl mb-6">🔍</div>
