@@ -119,6 +119,7 @@ const VocabularyPage = () => {
   const fetchVocabulary = async (level, category = '', search = '') => {
     try {
       setLoading(true);
+      setError(null); // Clear previous errors
       const params = new URLSearchParams({
         jlpt_level: level,
         limit: '200'
@@ -132,13 +133,20 @@ const VocabularyPage = () => {
         params.append('search', search);
       }
 
-      const response = await fetch(`http://localhost:5001/api/vocabulary?${params}`);
+      const url = `http://localhost:5001/api/vocabulary?${params}`;
+      console.log(`Fetching vocabulary: ${url}`);
+      
+      const response = await fetch(url);
       const data = await response.json();
+      
+      console.log(`Vocabulary response for ${level}:`, data);
       
       if (data.success) {
         setVocabulary(data.data);
+        console.log(`Loaded ${data.data.length} vocabulary items for ${level}`);
       } else {
         setError('Không thể tải dữ liệu từ vựng');
+        console.error('API returned error:', data);
       }
     } catch (err) {
       console.error('Error fetching vocabulary:', err);
@@ -167,6 +175,12 @@ const VocabularyPage = () => {
   useEffect(() => {
     fetchVocabulary(selectedLevel, selectedCategory, searchTerm);
   }, [selectedLevel, selectedCategory, searchTerm]);
+
+  // Reset category and search when switching levels
+  useEffect(() => {
+    setSelectedCategory('all');
+    setSearchTerm('');
+  }, [selectedLevel]);
 
   // Load categories on mount
   useEffect(() => {
