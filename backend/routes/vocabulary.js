@@ -8,7 +8,7 @@ router.get('/', [
   query('jlpt_level').optional().isIn(['N5', 'N4', 'N3', 'N2', 'N1']).withMessage('JLPT level không hợp lệ'),
   query('category').optional().trim(),
   query('page').optional().isInt({ min: 1 }).toInt(),
-  query('limit').optional().isInt({ min: 1, max: 100 }).toInt(),
+  query('limit').optional().isInt({ min: 1, max: 500 }).toInt(),
   query('search').optional().trim()
 ], async (req, res) => {
   try {

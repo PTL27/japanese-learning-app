@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Japanese Learning API Test</h1>
+    
+    <div>
+        <h2>Dictionary API Test</h2>
+        <button onclick="testDictionary()">Test Dictionary Search (朝 - N5 vocabulary)</button>
+        <button onclick="testN5Vocab()">Test N5 Vocabulary Search (あさごはん)</button>
+        <div id="dictionary-result"></div>
+    </div>
+    
+    <div>
+        <h2>Vocabulary API Test</h2>
+        <button onclick="testVocabularyList()">Test Vocabulary List (N5)</button>
+        <button onclick="testVocabularySearch()">Test Vocabulary Search (朝)</button>
+        <div id="vocabulary-result"></div>
+    </div>
+    
+    <div>
+        <h2>Kanji API Test</h2>
+        <button onclick="testKanji()">Test Kanji Search (水)</button>
+        <div id="kanji-result"></div>
+    </div>
+
+    <script>
+        async function testDictionary() {
+            const result = document.getElementById('dictionary-result');
+            try {
+                result.innerHTML = 'Loading...';
+                console.log('Testing dictionary search with 朝...');
+                const response = await fetch('http://localhost:5001/api/dictionary/search?q=朝');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                result.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testN5Vocab() {
+            const result = document.getElementById('dictionary-result');
+            try {
+                result.innerHTML = 'Loading N5 vocabulary...';
+                console.log('Testing N5 vocabulary search with あさごはん...');
+                const response = await fetch('http://localhost:5001/api/dictionary/search?q=あさごはん');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                result.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testVocabularyList() {
+            const result = document.getElementById('vocabulary-result');
+            try {
+                result.innerHTML = 'Loading vocabulary list...';
+                console.log('Testing vocabulary list N5...');
+                const response = await fetch('http://localhost:5001/api/vocabulary?jlpt_level=N5&limit=10');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                result.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testVocabularySearch() {
+            const result = document.getElementById('vocabulary-result');
+            try {
+                result.innerHTML = 'Loading vocabulary search...';
+                console.log('Testing vocabulary search with 朝...');
+                const response = await fetch('http://localhost:5001/api/vocabulary/search/query?q=朝');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                result.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testKanji() {
+            const result = document.getElementById('kanji-result');
+            try {
+                result.innerHTML = 'Loading...';
+                const response = await fetch('http://localhost:5001/api/kanji/search/水');
+                const data = await response.json();
+                result.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -100,6 +100,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getAuthToken = () => {
+    return localStorage.getItem('jwt_token');
+  };
+
   const value = {
     user,
     isLoading,
@@ -109,7 +113,8 @@ export const AuthProvider = ({ children }) => {
     updateProfile,
     changePassword,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getAuthToken
   };
 
   return (

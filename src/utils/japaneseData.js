@@ -146,6 +146,14 @@ export const vocabularyN5 = [
 let voicesLoaded = false;
 let availableVoices = [];
 
+// Throttle mechanism for text-to-speech
+let lastPlayTime = 0;
+const THROTTLE_DELAY = 1500; // 1.5 seconds
+let isPlaying = false;
+
+// Optional callback for when TTS is throttled
+let throttleCallback = null;
+
 export const loadVoices = () => {
   if ('speechSynthesis' in window) {
     const updateVoices = () => {
@@ -164,11 +172,52 @@ export const loadVoices = () => {
   }
 };
 
+// Check if TTS can be played right now
+export const canPlayTTS = () => {
+  const currentTime = Date.now();
+  return !isPlaying && (currentTime - lastPlayTime >= THROTTLE_DELAY);
+};
+
+// Get remaining throttle time in seconds
+export const getTTSCooldownTime = () => {
+  const currentTime = Date.now();
+  const timeSinceLastCall = currentTime - lastPlayTime;
+  if (timeSinceLastCall >= THROTTLE_DELAY) return 0;
+  return (THROTTLE_DELAY - timeSinceLastCall) / 1000;
+};
+
+// Set callback function for throttle events
+export const setTTSThrottleCallback = (callback) => {
+  throttleCallback = callback;
+};
+
 export const playTextToSpeech = async (text, language = 'ja-JP') => {
+  console.log(`🔊 TTS called for: "${text}"`);
+  
   if (!('speechSynthesis' in window)) {
     alert(`Phát âm: ${text} (Trình duyệt không hỗ trợ TTS)`);
     return;
   }
+
+  // Strong throttle check - prevent any overlapping calls
+  const currentTime = Date.now();
+  const timeSinceLastCall = currentTime - lastPlayTime;
+  
+  if (isPlaying || timeSinceLastCall < THROTTLE_DELAY) {
+    const remainingTime = isPlaying ? 'playing' : ((THROTTLE_DELAY - timeSinceLastCall) / 1000).toFixed(1);
+    console.log(`⏳ TTS call blocked - ${isPlaying ? 'currently playing' : `wait ${remainingTime} seconds`}`);
+    
+    // Call throttle callback if set
+    if (throttleCallback && !isPlaying) {
+      throttleCallback((THROTTLE_DELAY - timeSinceLastCall) / 1000);
+    }
+    return;
+  }
+  
+  // Immediately set playing state to prevent race conditions
+  isPlaying = true;
+  lastPlayTime = currentTime;
+  console.log(`✅ TTS proceeding for: "${text}"`);
 
   try {
     // Stop any current speech
@@ -218,6 +267,7 @@ export const playTextToSpeech = async (text, language = 'ja-JP') => {
     // Error handling
     utterance.onerror = (event) => {
       console.error('TTS Error:', event.error);
+      isPlaying = false; // Reset playing state on error
       if (event.error === 'network') {
         alert(`Phát âm: ${text} (Lỗi mạng)`);
       } else if (event.error === 'not-allowed') {
@@ -229,6 +279,7 @@ export const playTextToSpeech = async (text, language = 'ja-JP') => {
 
     utterance.onend = () => {
       console.log('TTS completed');
+      isPlaying = false; // Reset playing state when speech ends
     };
 
     // Speak with retry logic
@@ -237,6 +288,7 @@ export const playTextToSpeech = async (text, language = 'ja-JP') => {
         window.speechSynthesis.speak(utterance);
       } catch (error) {
         console.error('Speak error:', error);
+        isPlaying = false; // Reset playing state on speak error
         alert(`Phát âm: ${text} (Lỗi phát âm)`);
       }
     };
@@ -245,6 +297,7 @@ export const playTextToSpeech = async (text, language = 'ja-JP') => {
 
   } catch (error) {
     console.error('TTS Error:', error);
+    isPlaying = false; // Reset playing state on general error
     alert(`Phát âm: ${text} (Lỗi hệ thống)`);
   }
 };
