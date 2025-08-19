@@ -13,6 +13,7 @@ import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
 import ChangePasswordPage from './components/auth/ChangePasswordPage';
+import OAuthCallback from './components/auth/OAuthCallback';
 import ProfilePage from './components/profile/ProfilePage';
 import { loadVoices } from './utils/japaneseData';
 
@@ -140,6 +141,10 @@ const Layout = () => {
               <ForgotPasswordPage onNavigate={(page) => navigate(`/${page}`)} />
             </AuthRoute>
           } />
+          
+          {/* OAuth Callback Routes */}
+          <Route path="/auth/success" element={<OAuthCallback />} />
+          <Route path="/auth/error" element={<OAuthCallback />} />
           
           {/* Protected Routes */}
           <Route path="/home" element={
