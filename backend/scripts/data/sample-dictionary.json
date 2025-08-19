@@ -1,0 +1,249 @@
+{
+  "entries": [
+    {
+      "entry_id": "1000070",
+      "kanji": "水",
+      "kana": "みず",
+      "romaji": "mizu",
+      "meanings": ["nước"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 100,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "水を飲む",
+          "reading": "みずをのむ",
+          "meaning": "uống nước"
+        },
+        {
+          "japanese": "水が冷たい",
+          "reading": "みずがつめたい",
+          "meaning": "nước lạnh"
+        },
+        {
+          "japanese": "水道水",
+          "reading": "すいどうすい",
+          "meaning": "nước máy"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000080",
+      "kanji": "火",
+      "kana": "ひ",
+      "romaji": "hi",
+      "meanings": ["lửa"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 150,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "火をつける",
+          "reading": "ひをつける",
+          "meaning": "đốt lửa"
+        },
+        {
+          "japanese": "火事",
+          "reading": "かじ",
+          "meaning": "hỏa hoạn"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000090",
+      "kanji": "木",
+      "kana": "き",
+      "romaji": "ki",
+      "meanings": ["cây", "gỗ"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 200,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "木を切る",
+          "reading": "きをきる",
+          "meaning": "chặt cây"
+        },
+        {
+          "japanese": "木材",
+          "reading": "もくざい",
+          "meaning": "gỗ xây dựng"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000100",
+      "kanji": "土",
+      "kana": "つち",
+      "romaji": "tsuchi",
+      "meanings": ["đất", "đất đai"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 250,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "土を掘る",
+          "reading": "つちをほる",
+          "meaning": "đào đất"
+        },
+        {
+          "japanese": "土地",
+          "reading": "とち",
+          "meaning": "đất đai"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000110",
+      "kanji": "金",
+      "kana": "きん",
+      "romaji": "kin",
+      "meanings": ["vàng", "tiền"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 300,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "お金",
+          "reading": "おかね",
+          "meaning": "tiền"
+        },
+        {
+          "japanese": "金属",
+          "reading": "きんぞく",
+          "meaning": "kim loại"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000120",
+      "kanji": "人",
+      "kana": "ひと",
+      "romaji": "hito",
+      "meanings": ["người"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 50,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "人と話す",
+          "reading": "ひととはなす",
+          "meaning": "nói chuyện với ai đó"
+        },
+        {
+          "japanese": "日本人",
+          "reading": "にほんじん",
+          "meaning": "người Nhật"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000130",
+      "kanji": "大きい",
+      "kana": "おおきい",
+      "romaji": "ookii",
+      "meanings": ["to", "lớn"],
+      "parts_of_speech": ["tính từ đuôi i"],
+      "jlpt_level": "N5",
+      "frequency_rank": 75,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "大きい家",
+          "reading": "おおきいいえ",
+          "meaning": "nhà to"
+        },
+        {
+          "japanese": "大学",
+          "reading": "だいがく",
+          "meaning": "đại học"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000140",
+      "kanji": "小さい",
+      "kana": "ちいさい",
+      "romaji": "chiisai",
+      "meanings": ["nhỏ", "bé"],
+      "parts_of_speech": ["tính từ đuôi i"],
+      "jlpt_level": "N5",
+      "frequency_rank": 80,
+      "is_common": true,
+      "tags": ["cơ bản", "tiểu học"],
+      "examples": [
+        {
+          "japanese": "小さい犬",
+          "reading": "ちいさいいぬ",
+          "meaning": "con chó nhỏ"
+        },
+        {
+          "japanese": "小学校",
+          "reading": "しょうがっこう",
+          "meaning": "trường tiểu học"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000150",
+      "kanji": "学校",
+      "kana": "がっこう",
+      "romaji": "gakkou",
+      "meanings": ["trường học"],
+      "parts_of_speech": ["danh từ"],
+      "jlpt_level": "N5",
+      "frequency_rank": 120,
+      "is_common": true,
+      "tags": ["cơ bản", "giáo dục"],
+      "examples": [
+        {
+          "japanese": "学校に行く",
+          "reading": "がっこうにいく",
+          "meaning": "đi học"
+        },
+        {
+          "japanese": "小学校",
+          "reading": "しょうがっこう",
+          "meaning": "trường tiểu học"
+        }
+      ]
+    },
+    {
+      "entry_id": "1000160",
+      "kanji": "食べる",
+      "kana": "たべる",
+      "romaji": "taberu",
+      "meanings": ["ăn"],
+      "parts_of_speech": ["động từ nhóm 2"],
+      "jlpt_level": "N5",
+      "frequency_rank": 90,
+      "is_common": true,
+      "tags": ["cơ bản", "hành động"],
+      "examples": [
+        {
+          "japanese": "ご飯を食べる",
+          "reading": "ごはんをたべる",
+          "meaning": "ăn cơm"
+        },
+        {
+          "japanese": "朝食を食べる",
+          "reading": "ちょうしょくをたべる",
+          "meaning": "ăn sáng"
+        }
+      ]
+    }
+  ]
+}

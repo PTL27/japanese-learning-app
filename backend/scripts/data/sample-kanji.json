@@ -1,0 +1,394 @@
+{
+  "kanji": [
+    {
+      "character": "水",
+      "meanings": ["nước"],
+      "on_readings": ["スイ"],
+      "kun_readings": ["みず"],
+      "name_readings": [],
+      "stroke_count": 4,
+      "radical": "水",
+      "radical_name": "nước",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 100,
+      "unicode": "U+6C34",
+      "components": ["水"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "水道",
+          "reading": "すいどう",
+          "meaning": "vòi nước, hệ thống cấp nước"
+        },
+        {
+          "word": "水泳",
+          "reading": "すいえい",
+          "meaning": "bơi lội"
+        },
+        {
+          "word": "お水",
+          "reading": "おみず",
+          "meaning": "nước (lịch sự)"
+        },
+        {
+          "word": "水曜日",
+          "reading": "すいようび",
+          "meaning": "thứ tư"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "thiên nhiên"]
+    },
+    {
+      "character": "火",
+      "meanings": ["lửa", "hỏa"],
+      "on_readings": ["カ"],
+      "kun_readings": ["ひ", "ほ"],
+      "name_readings": [],
+      "stroke_count": 4,
+      "radical": "火",
+      "radical_name": "lửa",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 150,
+      "unicode": "U+706B",
+      "components": ["火"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "火曜日",
+          "reading": "かようび",
+          "meaning": "thứ ba"
+        },
+        {
+          "word": "花火",
+          "reading": "はなび",
+          "meaning": "pháo hoa"
+        },
+        {
+          "word": "火事",
+          "reading": "かじ",
+          "meaning": "hỏa hoạn"
+        },
+        {
+          "word": "火山",
+          "reading": "かざん",
+          "meaning": "núi lửa"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "thiên nhiên"]
+    },
+    {
+      "character": "木",
+      "meanings": ["cây", "gỗ", "mộc"],
+      "on_readings": ["ボク", "モク"],
+      "kun_readings": ["き"],
+      "name_readings": [],
+      "stroke_count": 4,
+      "radical": "木",
+      "radical_name": "cây",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 200,
+      "unicode": "U+6728",
+      "components": ["木"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "木曜日",
+          "reading": "もくようび",
+          "meaning": "thứ năm"
+        },
+        {
+          "word": "大木",
+          "reading": "たいぼく",
+          "meaning": "cây to"
+        },
+        {
+          "word": "木材",
+          "reading": "もくざい",
+          "meaning": "gỗ, nguyên liệu gỗ"
+        },
+        {
+          "word": "植木",
+          "reading": "うえき",
+          "meaning": "cây trồng"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "thiên nhiên"]
+    },
+    {
+      "character": "土",
+      "meanings": ["đất", "thổ"],
+      "on_readings": ["ド", "ト"],
+      "kun_readings": ["つち"],
+      "name_readings": [],
+      "stroke_count": 3,
+      "radical": "土",
+      "radical_name": "đất",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 250,
+      "unicode": "U+571F",
+      "components": ["土"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "土曜日",
+          "reading": "どようび",
+          "meaning": "thứ bảy"
+        },
+        {
+          "word": "土地",
+          "reading": "とち",
+          "meaning": "đất đai"
+        },
+        {
+          "word": "土壌",
+          "reading": "どじょう",
+          "meaning": "đất trồng trọt"
+        },
+        {
+          "word": "国土",
+          "reading": "こくど",
+          "meaning": "lãnh thổ quốc gia"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "thiên nhiên"]
+    },
+    {
+      "character": "金",
+      "meanings": ["vàng", "tiền", "kim loại", "kim"],
+      "on_readings": ["キン", "コン"],
+      "kun_readings": ["かね", "かな"],
+      "name_readings": [],
+      "stroke_count": 8,
+      "radical": "金",
+      "radical_name": "kim loại",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 300,
+      "unicode": "U+91D1",
+      "components": ["金"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "金曜日",
+          "reading": "きんようび",
+          "meaning": "thứ sáu"
+        },
+        {
+          "word": "お金",
+          "reading": "おかね",
+          "meaning": "tiền"
+        },
+        {
+          "word": "金属",
+          "reading": "きんぞく",
+          "meaning": "kim loại"
+        },
+        {
+          "word": "金魚",
+          "reading": "きんぎょ",
+          "meaning": "cá vàng"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "vật liệu"]
+    },
+    {
+      "character": "人",
+      "meanings": ["người", "nhân"],
+      "on_readings": ["ジン", "ニン"],
+      "kun_readings": ["ひと"],
+      "name_readings": [],
+      "stroke_count": 2,
+      "radical": "人",
+      "radical_name": "người",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 50,
+      "unicode": "U+4EBA",
+      "components": ["人"],
+      "variants": ["亻"],
+      "examples": [
+        {
+          "word": "日本人",
+          "reading": "にほんじん",
+          "meaning": "người Nhật"
+        },
+        {
+          "word": "大人",
+          "reading": "おとな",
+          "meaning": "người lớn"
+        },
+        {
+          "word": "人間",
+          "reading": "にんげん",
+          "meaning": "con người"
+        },
+        {
+          "word": "一人",
+          "reading": "ひとり",
+          "meaning": "một người"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "con người"]
+    },
+    {
+      "character": "大",
+      "meanings": ["lớn", "to", "đại"],
+      "on_readings": ["ダイ", "タイ"],
+      "kun_readings": ["おお", "おおきい"],
+      "name_readings": [],
+      "stroke_count": 3,
+      "radical": "大",
+      "radical_name": "lớn",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 75,
+      "unicode": "U+5927",
+      "components": ["大"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "大学",
+          "reading": "だいがく",
+          "meaning": "đại học"
+        },
+        {
+          "word": "大きい",
+          "reading": "おおきい",
+          "meaning": "to, lớn"
+        },
+        {
+          "word": "大切",
+          "reading": "たいせつ",
+          "meaning": "quan trọng"
+        },
+        {
+          "word": "大好き",
+          "reading": "だいすき",
+          "meaning": "rất thích"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "kích thước"]
+    },
+    {
+      "character": "小",
+      "meanings": ["nhỏ", "bé", "tiểu"],
+      "on_readings": ["ショウ"],
+      "kun_readings": ["ちいさい", "こ"],
+      "name_readings": [],
+      "stroke_count": 3,
+      "radical": "小",
+      "radical_name": "nhỏ",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 80,
+      "unicode": "U+5C0F",
+      "components": ["小"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "小学校",
+          "reading": "しょうがっこう",
+          "meaning": "trường tiểu học"
+        },
+        {
+          "word": "小さい",
+          "reading": "ちいさい",
+          "meaning": "nhỏ, bé"
+        },
+        {
+          "word": "小さな",
+          "reading": "ちいさな",
+          "meaning": "nhỏ nhắn"
+        },
+        {
+          "word": "小鳥",
+          "reading": "ことり",
+          "meaning": "chim nhỏ"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "kích thước"]
+    },
+    {
+      "character": "学",
+      "meanings": ["học", "học tập", "học vấn"],
+      "on_readings": ["ガク"],
+      "kun_readings": ["まなぶ"],
+      "name_readings": [],
+      "stroke_count": 8,
+      "radical": "子",
+      "radical_name": "trẻ con",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 120,
+      "unicode": "U+5B66",
+      "components": ["学"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "学校",
+          "reading": "がっこう",
+          "meaning": "trường học"
+        },
+        {
+          "word": "学生",
+          "reading": "がくせい",
+          "meaning": "học sinh"
+        },
+        {
+          "word": "数学",
+          "reading": "すうがく",
+          "meaning": "toán học"
+        },
+        {
+          "word": "学ぶ",
+          "reading": "まなぶ",
+          "meaning": "học tập"
+        }
+      ],
+      "tags": ["tiểu học", "giáo dục"]
+    },
+    {
+      "character": "生",
+      "meanings": ["sinh", "sống", "sinh viên", "sống"],
+      "on_readings": ["セイ", "ショウ"],
+      "kun_readings": ["いきる", "うまれる", "なま", "き"],
+      "name_readings": [],
+      "stroke_count": 5,
+      "radical": "生",
+      "radical_name": "sống",
+      "jlpt_level": 5,
+      "grade_level": 1,
+      "frequency_rank": 60,
+      "unicode": "U+751F",
+      "components": ["生"],
+      "variants": [],
+      "examples": [
+        {
+          "word": "学生",
+          "reading": "がくせい",
+          "meaning": "học sinh"
+        },
+        {
+          "word": "先生",
+          "reading": "せんせい",
+          "meaning": "thầy giáo"
+        },
+        {
+          "word": "生活",
+          "reading": "せいかつ",
+          "meaning": "cuộc sống"
+        },
+        {
+          "word": "生まれる",
+          "reading": "うまれる",
+          "meaning": "sinh ra"
+        }
+      ],
+      "tags": ["tiểu học", "cơ bản", "cuộc sống"]
+    }
+  ]
+}

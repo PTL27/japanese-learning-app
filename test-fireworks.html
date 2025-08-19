@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fireworks</title>
+</head>
+<body>
+    <div id="fireworks-container" style="width: 100vw; height: 100vh; background: black;"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.8/dist/index.umd.js"></script>
+    <script>
+        console.log('Testing fireworks...');
+        const container = document.getElementById('fireworks-container');
+        const fireworks = new Fireworks(container, {
+            opacity: 0.8,
+            acceleration: 1.05,
+            friction: 0.97,
+            gravity: 1.5,
+            particles: 80,
+            traceLength: 3,
+            traceSpeed: 10,
+            explosion: 8,
+            intensity: 30,
+            flickering: 50,
+            lineStyle: 'round',
+            hue: { min: 0, max: 360 },
+            delay: { min: 30, max: 60 }
+        });
+        
+        fireworks.start();
+        console.log('Fireworks started!');
+        
+        // Stop after 5 seconds
+        setTimeout(() => {
+            fireworks.stop();
+            console.log('Fireworks stopped!');
+        }, 5000);
+    </script>
+</body>
+</html>

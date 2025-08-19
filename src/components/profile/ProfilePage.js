@@ -115,10 +115,10 @@ const ProfilePage = () => {
 
   const getLevelColor = (level) => {
     const colors = {
-      'N5': 'from-green-500 to-emerald-600',
-      'N4': 'from-blue-500 to-cyan-600',
-      'N3': 'from-yellow-500 to-orange-600',
-      'N2': 'from-purple-500 to-indigo-600',
+      'N5': 'from-blue-500 to-cyan-600',
+      'N4': 'from-orange-500 to-amber-600',
+      'N3': 'from-purple-500 to-violet-600',
+      'N2': 'from-green-500 to-emerald-600',
       'N1': 'from-red-500 to-pink-600'
     };
     return colors[level] || 'from-gray-500 to-gray-600';

@@ -5,7 +5,10 @@ import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import AlphabetPage from './components/AlphabetPage';
 import VocabularyPage from './components/VocabularyPage';
-import QuizPage from './components/QuizPage';
+import DictionaryPage from './components/DictionaryPage';
+import KanjiPage from './components/KanjiPage';
+import QuizMainPage from './components/QuizMainPage';
+import QuizHubPage from './components/QuizHubPage';
 import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
@@ -102,20 +105,12 @@ const AuthRoute = ({ children }) => {
 
 // Layout Component
 const Layout = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const voicesReady = useTTSVoices();
-  
-  // Extract current page from pathname
-  const currentPath = location.pathname.substring(1) || 'home';
-  
-  const setCurrentPage = (page) => {
-    navigate(`/${page}`);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation currentPage={currentPath} setCurrentPage={setCurrentPage} />
+      <Navigation />
       {!voicesReady && (
         <div className="bg-yellow-100 border-l-4 border-yellow-400 p-4">
           <div className="flex">
@@ -162,9 +157,24 @@ const Layout = () => {
               <VocabularyPage />
             </ProtectedRoute>
           } />
+          <Route path="/dictionary" element={
+            <ProtectedRoute>
+              <DictionaryPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/kanji" element={
+            <ProtectedRoute>
+              <KanjiPage />
+            </ProtectedRoute>
+          } />
           <Route path="/quiz" element={
             <ProtectedRoute>
-              <QuizPage />
+              <QuizMainPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/quiz-hub" element={
+            <ProtectedRoute>
+              <QuizHubPage />
             </ProtectedRoute>
           } />
           <Route path="/profile" element={

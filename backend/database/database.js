@@ -129,6 +129,59 @@ const createTables = async () => {
       )
     `;
 
+    const createQuizSessionsTable = `
+      CREATE TABLE IF NOT EXISTS quiz_sessions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        quiz_type TEXT NOT NULL DEFAULT 'vocabulary',
+        jlpt_level TEXT NOT NULL DEFAULT 'N5' CHECK(jlpt_level IN ('N5', 'N4', 'N3', 'N2', 'N1')),
+        quiz_number INTEGER NOT NULL CHECK(quiz_number BETWEEN 1 AND 10),
+        total_questions INTEGER NOT NULL DEFAULT 10,
+        correct_answers INTEGER NOT NULL DEFAULT 0,
+        incorrect_answers INTEGER NOT NULL DEFAULT 0,
+        score_percentage REAL NOT NULL DEFAULT 0,
+        time_spent INTEGER NOT NULL DEFAULT 0, -- Time spent in seconds
+        completed_at DATETIME DEFAULT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+      )
+    `;
+
+    const createQuizQuestionsTable = `
+      CREATE TABLE IF NOT EXISTS quiz_questions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        session_id INTEGER NOT NULL,
+        vocabulary_id INTEGER NOT NULL,
+        question_text TEXT NOT NULL,
+        option_a TEXT NOT NULL,
+        option_b TEXT NOT NULL,
+        option_c TEXT NOT NULL,
+        option_d TEXT NOT NULL,
+        correct_option TEXT NOT NULL CHECK(correct_option IN ('A', 'B', 'C', 'D')),
+        user_answer TEXT CHECK(user_answer IN ('A', 'B', 'C', 'D')),
+        is_correct BOOLEAN DEFAULT FALSE,
+        answered_at DATETIME,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (session_id) REFERENCES quiz_sessions (id) ON DELETE CASCADE,
+        FOREIGN KEY (vocabulary_id) REFERENCES vocabulary (id) ON DELETE CASCADE
+      )
+    `;
+
+    const createDictionaryTable = `
+      CREATE TABLE IF NOT EXISTS dictionary (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        word TEXT NOT NULL,
+        reading TEXT,
+        meaning TEXT NOT NULL,
+        word_type TEXT,
+        jlpt_level TEXT CHECK(jlpt_level IN ('N5', 'N4', 'N3', 'N2', 'N1')),
+        example_sentence TEXT,
+        tags TEXT, -- JSON array of tags
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+
     // Execute table creation queries
     db.serialize(() => {
       db.run(createUsersTable, (err) => {
@@ -174,6 +227,30 @@ const createTables = async () => {
       db.run(createLessonsTable, (err) => {
         if (err) {
           console.error('Error creating lessons table:', err);
+          reject(err);
+          return;
+        }
+      });
+
+      db.run(createQuizSessionsTable, (err) => {
+        if (err) {
+          console.error('Error creating quiz_sessions table:', err);
+          reject(err);
+          return;
+        }
+      });
+
+      db.run(createQuizQuestionsTable, (err) => {
+        if (err) {
+          console.error('Error creating quiz_questions table:', err);
+          reject(err);
+          return;
+        }
+      });
+
+      db.run(createDictionaryTable, (err) => {
+        if (err) {
+          console.error('Error creating dictionary table:', err);
           reject(err);
           return;
         }

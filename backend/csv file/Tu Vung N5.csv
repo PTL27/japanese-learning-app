@@ -1,0 +1,615 @@
+Kanji,Hiragana,Tiếng Việt,Từ loại,JLPT Level
+朝,あさ,buổi sáng,danh từ,N5
+朝ご飯,あさごはん,bữa ăn sáng,danh từ,N5
+あさって,あさって,ngày kia,danh từ,N5
+足,あし,chân,danh từ,N5
+明日,あした,ngày mai,danh từ,N5
+これ,これ,cái này,đại từ,N5
+それ,それ,cái đó,đại từ,N5
+あれ,あれ,cái kia,đại từ,N5
+ここ,ここ,chỗ này,đại từ,N5
+そこ,そこ,chỗ đó,đại từ,N5
+あそこ,あそこ,""Chỗ kia, đằng kia"",đại từ,N5
+こちら,こちら,phía này,đại từ,N5
+そちら,そちら,phía đó,đại từ,N5
+あちら,あちら,phía kia,đại từ,N5
+春,はる,mùa xuân,danh từ,N5
+夏,なつ,mùa hạ,danh từ,N5
+秋,あき,mùa thu,danh từ,N5
+冬,ふゆ,mùa đông,danh từ,N5
+頭,あたま,đầu,danh từ,N5
+あなた,あなた,bạn,đại từ,N5
+兄,あに,Anh trai (mình),danh từ,N5
+姉,あね,Chị gái (mình),danh từ,N5
+アパート,あぱーと,căn hộ,danh từ,N5
+雨,あめ,mưa,danh từ,N5
+飴,あめ,kẹo (ngậm),danh từ,N5
+家,いえ,nhà,danh từ,N5
+池,いけ,cái ao,danh từ,N5
+医者,いしゃ,bác sĩ,danh từ,N5
+椅子,いす,ghế,danh từ,N5
+一,いち,một,danh từ,N5
+一日,いちにち,"ついたち,Một ngày, ngày mồng 1",danh từ,N5
+二日,ふつか,"2 ngày, ngày mồng 2",danh từ,N5
+三日,みっか,"3 ngày, ngày mồng 3",danh từ,N5
+四日,よっか,"4 ngày, ngày mồng 4",danh từ,N5
+五日,いつか,"năm ngày, ngày mồng 5",danh từ,N5
+六日,むいか,"6 ngày, ngày mồng 6",danh từ,N5
+七日,なのか,"7 ngày, ngày mồng 7",danh từ,N5
+八日,ようか,"8 ngày, ngày mồng 8",danh từ,N5
+九日,ここのか,"9 ngày, ngày mồng 9",danh từ,N5
+十日,とおか,"10 ngày, ngày mồng 10",danh từ,N5
+五つ,いつつ,năm cái (đếm đồ vật nói chung),danh từ,N5
+犬,いぬ,con chó,danh từ,N5
+今,いま,bây giờ,danh từ,N5
+意味,いみ,ý nghĩa,danh từ,N5
+妹,いもうと,em gái (mình),danh từ,N5
+入口,いりぐち,lối vào,danh từ,N5
+色,いろ,màu,danh từ,N5
+上,うえ,trên,danh từ,N5
+後ろ,うしろ,đằng sau,danh từ,N5
+歌,うた,bài hát,danh từ,N5
+海,うみ,biển,danh từ,N5
+上着,うわぎ,áo khoác,danh từ,N5
+絵,え,bức tranh,danh từ,N5
+映画,えいが,phim (điện ảnh),danh từ,N5
+映画館,えいがかん,rạp chiếu phim,danh từ,N5
+英語,えいご,Tiếng Anh,danh từ,N5
+駅,えき,nhà ga,danh từ,N5
+エレベーター,えれべーた,thang máy,danh từ,N5
+鉛筆,えんぴつ,bút chì,danh từ,N5
+大勢,おおぜい,Nhiều (người),danh từ,N5
+お母さん,おかあさん,Mẹ (khi nói về mẹ người khác),danh từ,N5
+お菓子,おかし,"Bánh, kẹo",danh từ,N5
+お金,おかね,tiền,danh từ,N5
+奥さん,おくさん,vợ (khi nói về vợ người khác),danh từ,N5
+お酒,おさけ,rượu,danh từ,N5
+お皿,おさら,Cái đĩa,danh từ,N5
+おじいさん,おじいさん,"ông (nội, ngoại), ông già",danh từ,N5
+おじさん,おじさん,"chú, bác (người đàn ông trung niên)",danh từ,N5
+お茶,おちゃ,trà,danh từ,N5
+お手洗い,おてあらい,nhà vệ sinh,danh từ,N5
+お父さん,おとうさん,bố (dùng để nói về bố người khác),danh từ,N5
+弟,おとうと,em trai (mình),danh từ,N5
+男,おとこ,"nam giới, con trai",danh từ,N5
+男の子,おとこのこ,bé trai,danh từ,N5
+一昨日,おととい,hôm kia,danh từ,N5
+一昨年,おととし,Năm kia,danh từ,N5
+大人,おとな,người lớn,danh từ,N5
+おなか,おなか,bụng,danh từ,N5
+同じ,おなじ,giống nhau,danh từ,N5
+お兄さん,おにいさん,anh trai (người khác),danh từ,N5
+お姉さん,おねえさん,chị gái (người khác),danh từ,N5
+おばあさん,おばあさん,"bà (nội, ngoại), bà già",danh từ,N5
+おばさん,おばさん,"Cô, dì",danh từ,N5
+お風呂,おふろ,Bồn tắm,danh từ,N5
+お弁当,おべんとう,cơm hộp,danh từ,N5
+おまわりさん,おまわりさん,cảnh sát,danh từ,N5
+音楽,おんがく,âm nhạc,danh từ,N5
+女の子,おんなのこ,bé gái,danh từ,N5
+外国,がいこく,nước ngoài,danh từ,N5
+外国人,がいこくじん,người nước ngoài,danh từ,N5
+会社,かいしゃ,Công ty,danh từ,N5
+階段,かいだん,Cầu thang,danh từ,N5
+買い物,かいもの,mua sắm,danh từ,N5
+かぎ,かぎ,chìa khóa,danh từ,N5
+学生,がくせい,"học sinh, sinh viên",danh từ,N5
+傘,かさ,cái ô,danh từ,N5
+風,かぜ,gió,danh từ,N5
+風邪,かぜ,"cảm, cúm",danh từ,N5
+家族,かぞく,Gia đình,danh từ,N5
+方,かた,"vị, người (cách nói lịch sự của 人), cách (làm việc gì đó)",danh từ,N5
+学校,がっこう,trường học,danh từ,N5
+カップ,かっぷ,Cốc (có tay cầm),danh từ,N5
+コップ,こっぷ,Cốc (không quai),danh từ,N5
+家庭,かてい,gia đình,danh từ,N5
+角,かど,"góc (bàn, cua, quẹo)",danh từ,N5
+かばん,かばん,"cặp, túi sách",danh từ,N5
+花瓶,かびん,"bình hoa, lọ hoa",danh từ,N5
+紙,かみ,giấy,danh từ,N5
+カメラ,かめら,máy ảnh,danh từ,N5
+火曜日,かようび,Thứ ba,danh từ,N5
+カレー,かれー,Cà ri,danh từ,N5
+カレンダー,かれんだー,tờ lịch,danh từ,N5
+川,かわ,sông,danh từ,N5
+漢字,かんじ,chữ hán,danh từ,N5
+木,き,"cây, gỗ",danh từ,N5
+黄色,きいろ,màu vàng,danh từ,N5
+北,きた,phía Bắc,danh từ,N5
+ギター,ぎたー,Guitar,danh từ,N5
+喫茶店,きっさてん,quán giải khát,danh từ,N5
+切手,きって,tem,danh từ,N5
+切符,きっぷ,"vé (tàu, xe)",danh từ,N5
+昨日,きのう,Hôm qua,danh từ,N5
+牛肉,ぎゅうにく,thịt bò,danh từ,N5
+牛乳,ぎゅうにゅう,sữa (bò),danh từ,N5
+今日,きょう,Hôm nay,danh từ,N5
+教室,きょうしつ,"phòng học, lớp học",danh từ,N5
+兄弟,きょうだい,anh chị em,danh từ,N5
+去年,きょねん,năm ngoái,danh từ,N5
+キロ/キログラム,きろ/きろぐらむ,kg,danh từ,N5
+キロ/キロメートル,きろ/きろめーとる,km,danh từ,N5
+銀行,ぎんこう,Ngân hàng,danh từ,N5
+金曜日,きんようび,Thứ sáu,danh từ,N5
+薬,くすり,thuốc,danh từ,N5
+果物,くだもの,"hoa quả, trái cây",danh từ,N5
+口,くち,miệng,danh từ,N5
+靴,くつ,giày dép,danh từ,N5
+靴下,くつした,cái tất,danh từ,N5
+国,くに,đất nước,danh từ,N5
+曇り,くもり,"có mây, nhiều mây",danh từ,N5
+クラス,くらす,lớp học,danh từ,N5
+グラム,ぐらむ,gram,danh từ,N5
+車,くるま,"xe hơi, xe",danh từ,N5
+黒,くろ,"đen, màu đen",danh từ,N5
+警官,けいかん,cảnh sát,danh từ,N5
+今朝,けさ,sáng nay,danh từ,N5
+結婚,けっこん,kết hôn,danh từ,N5
+月曜日,げつようび,thứ hai,danh từ,N5
+玄関,げんかん,lối đi vào,danh từ,N5
+公園,こうえん,công viên,danh từ,N5
+交差点,こうさてん,ngã tư,danh từ,N5
+紅茶,こうちゃ,trà đen,danh từ,N5
+交番,こうばん,"bốt, trạm cảnh sát",danh từ,N5
+声,こえ,"tiếng, giọng nói",danh từ,N5
+コート,こーと,áo khoác,danh từ,N5
+コーヒー,こーひー,cà phê,danh từ,N5
+午後,ごご,buổi chiều,danh từ,N5
+九つ,ここのつ,9 cái (vật nói chung),danh từ,N5
+午前,ごぜん,buổi sáng,danh từ,N5
+こっち,こっち,phía này (cách nói ngắn gọn của こちら）,đại từ,N5
+コップ,こっぷ,Cốc (không quai),danh từ,N5
+今年,ことし,năm nay,danh từ,N5
+言葉,ことば,"từ, từ vựng",danh từ,N5
+子供,こども,"trẻ em, con cái",danh từ,N5
+御飯,ごはん,"cơm, bữa ăn",danh từ,N5
+これ,これ,cái này,đại từ,N5
+今月,こんげつ,tháng này,danh từ,N5
+今週,こんしゅう,tuần này,danh từ,N5
+こんな,こんな,như thế này,đại từ,N5
+今晩,こんばん,tối nay,danh từ,N5
+財布,さいふ,cái ví,danh từ,N5
+魚,さかな,cá,danh từ,N5
+作文,さくぶん,làm văn,danh từ,N5
+雑誌,ざっし,tạp chí,danh từ,N5
+砂糖,さとう,đường,danh từ,N5
+再来年,さらいねん,năm sau nữa,danh từ,N5
+三,さん,ba,danh từ,N5
+四,し / よん,bốn,danh từ,N5
+塩,しお,muối,danh từ,N5
+時間,じかん,Thời gian,danh từ,N5
+仕事,しごと,công việc,danh từ,N5
+辞書,じしょ,từ điển,danh từ,N5
+下,した,dưới,danh từ,N5
+七,しち / なな,bảy,danh từ,N5
+質問,しつもん,Câu hỏi,danh từ,N5
+自転車,じてんしゃ,xe đạp,danh từ,N5
+自動車,じどうしゃ,"ô tô, xe hơi",danh từ,N5
+自分,じぶん,"bản thân, tự mình",danh từ,N5
+写真,しゃしん,ảnh,danh từ,N5
+シャツ,しゃつ,áo sơ mi,danh từ,N5
+シャワー,しゃわー,vòi hoa sen,danh từ,N5
+十,じゅう,mười,danh từ,N5
+授業,じゅぎょう,giờ học,danh từ,N5
+宿題,しゅくだい,bài tập về nhà,danh từ,N5
+しょうゆ,しょうゆ,xì dầu,danh từ,N5
+食堂,しょくどう,"phòng ăn, nhà ăn",danh từ,N5
+新聞,しんぶん,báo,danh từ,N5
+水曜日,すいようび,Thứ tư,danh từ,N5
+スカート,すかーと,váy ngắn,danh từ,N5
+ストーブ,すとーぶ,lò sưởi,danh từ,N5
+スプーン,すぷーん,cái thìa,danh từ,N5
+スポーツ,すぽーつ,Thể thao,danh từ,N5
+ズボン,ずぼん,quần,danh từ,N5
+背,せ,lưng,danh từ,N5
+生徒,せいと,học sinh,danh từ,N5
+セーター,せーたー,áo len,danh từ,N5
+せっけん,せっけん,xà bông,danh từ,N5
+ゼロ,ぜろ,số 0,danh từ,N5
+千,せん,nghìn,danh từ,N5
+先月,せんげつ,tháng trước,danh từ,N5
+先週,せんしゅう,tuan trước,danh từ,N5
+先生,せんせい,"giáo viên, bác sĩ",danh từ,N5
+洗濯,せんたく,việc giặt giũ,danh từ,N5
+掃除,そうじ,dọn dẹp,danh từ,N5
+そこ,そこ,chỗ đó,danh từ,N5
+そちら,そちら,phía đó,danh từ,N5
+そっち,そっち,phía đó (thể thông thường của そちら),đại từ,N5
+外,そと,ngoài,danh từ,N5
+そば,そば,"gần, bên cạnh",danh từ,N5
+空,そら,bầu trời,danh từ,N5
+それ,それ,cái đó,đại từ,N5
+大学,だいがく,đại học,danh từ,N5
+大使館,たいしかん,Đại sứ quán,danh từ,N5
+台所,だいどころ,nhà bếp,danh từ,N5
+タクシー,たくしー,xe taxi,danh từ,N5
+建物,たてもの,tòa nhà,danh từ,N5
+食べ物,たべもの,đồ ăn,danh từ,N5
+卵,たまご,trứng,danh từ,N5
+誕生日,たんじょうび,sinh nhật,danh từ,N5
+地下鉄,ちかてつ,tàu điện ngầm,danh từ,N5
+地図,ちず,Bản đồ,danh từ,N5
+茶色,ちゃいろ,màu nâu (màu trà),danh từ,N5
+ちゃわん,ちゃわん,cái bát,danh từ,N5
+一日,ついたち,ngày mồng 1,danh từ,N5
+机,つくえ,bàn,danh từ,N5
+手,て,tay,danh từ,N5
+テーブル,てーぶる,cái bàn,danh từ,N5
+テープレコーダー,てーぷれこーだー,máy ghi âm,danh từ,N5
+手紙,てがみ,thư,danh từ,N5
+出口,でぐち,"cửa ra, lối ra",danh từ,N5
+テスト,てすと,kiểm tra,danh từ,N5
+デパート,でぱーと,cửa hàng bách hóa,danh từ,N5
+テレビ,てれび,Tivi,danh từ,N5
+天気,てんき,thời tiết,danh từ,N5
+電気,でんき,"điện, đèn điện",danh từ,N5
+電車,でんしゃ,tàu điện,danh từ,N5
+電話,でんわ,điện thoại,danh từ,N5
+戸,と,Cửa,danh từ,N5
+ドア,どあ,Cửa,danh từ,N5
+トイレ,といれ,nhà vệ sinh,danh từ,N5
+所,ところ,"nơi, chỗ",danh từ,N5
+年,とし,năm,danh từ,N5
+図書館,としょかん,thư viện,danh từ,N5
+動物,どうぶつ,động vật,danh từ,N5
+時々,ときどき,thỉnh thoảng,danh từ,N5
+時計,とけい,đồng hồ,danh từ,N5
+隣,となり,bên cạnh,danh từ,N5
+友達,ともだち,bạn bè,danh từ,N5
+土曜日,どようび,Thứ bảy,danh từ,N5
+鳥,とり,con chim,danh từ,N5
+とり肉,とりにく,thịt gà,danh từ,N5
+ナイフ,ないふ,dao,danh từ,N5
+中,なか,trong,danh từ,N5
+夏,なつ,mùa hè,danh từ,N5
+夏休み,なつやすみ,kỳ nghỉ hè,danh từ,N5
+七つ,ななつ,bảy cái (đếm vật nói chung),danh từ,N5
+名前,なまえ,tên,danh từ,N5
+二,に,hai,danh từ,N5
+肉,にく,thịt,danh từ,N5
+西,にし,phía Tây,danh từ,N5
+日曜日,にちようび,Chủ Nhật,danh từ,N5
+荷物,にもつ,"hành lý, đồ đạc",danh từ,N5
+ニュース,にゅーす,tin tức,danh từ,N5
+庭,にわ,vườn,danh từ,N5
+ネクタイ,ねくたい,"cà vạt, cà vạt",danh từ,N5
+猫,ねこ,mèo,danh từ,N5
+飲み物,のみもの,đồ uống,danh từ,N5
+歯,は,răng,danh từ,N5
+パーティー,ぱーてぃ,tiệc,danh từ,N5
+灰皿,はいざら,gạt tàn thuốc,danh từ,N5
+葉書,はがき,bưu thiếp,danh từ,N5
+箱,はこ,cái hộp,danh từ,N5
+橋,はし,cầu,danh từ,N5
+箸,はし,đũa,danh từ,N5
+バス,ばす,xe buýt,danh từ,N5
+バター,ばたー,bơ,danh từ,N5
+二十歳,はたち,20 tuổi,danh từ,N5
+八,はち,tám,danh từ,N5
+二十日,はつか,"ngày 20, 20 ngày",danh từ,N5
+花,はな,hoa,danh từ,N5
+鼻,はな,mũi,danh từ,N5
+話,はなし,câu chuyện,danh từ,N5
+春,はる,mùa xuân,danh từ,N5
+半,はん,một nửa,danh từ,N5
+晩,ばん,buổi tối,danh từ,N5
+パン,ぱん,bánh mì,danh từ,N5
+ハンカチ,はんかち,khăn tay,danh từ,N5
+番号,ばんごう,số,danh từ,N5
+晩御飯,ばんごはん,bữa ăn tối,danh từ,N5
+半分,はんぶん,một nửa,danh từ,N5
+東,ひがし,phía Đông,danh từ,N5
+飛行機,ひこうき,máy bay,danh từ,N5
+左,ひだり,phía bên tay trái,danh từ,N5
+人,ひと,người,danh từ,N5
+一つ,ひとつ,một cái (đếm vật nói chung),danh từ,N5
+一月,いちがつ,tháng 1,danh từ,N5
+一人,ひとり,một người,danh từ,N5
+百,ひゃく,trăm,danh từ,N5
+病院,びょういん,bệnh viện,danh từ,N5
+病気,びょうき,bệnh,danh từ,N5
+昼,ひる,"buổi trưa, ban ngày",danh từ,N5
+昼ご飯,ひるごはん,ăn trưa,danh từ,N5
+フィルム,ふぃるむ,cuộn phim,danh từ,N5
+封筒,ふうとう,phong bì,danh từ,N5
+プール,ぷーる,hồ bơi,danh từ,N5
+フォーク,ふぉーく,dĩa,danh từ,N5
+服,ふく,quần áo,danh từ,N5
+二つ,ふたつ,hai cái (đếm vật nói chung),danh từ,N5
+豚肉,ぶたにく,thịt lợn,danh từ,N5
+二人,ふたり,hai người,danh từ,N5
+二日,ふつか,"hai ngày, ngày mồng 2",danh từ,N5
+冬,ふゆ,mùa đông,danh từ,N5
+文章,ぶんしょう,"câu văn, đoạn văn",danh từ,N5
+ページ,ぺーじ,trang,danh từ,N5
+ベッド,べっど,cái giường,danh từ,N5
+ペット,ぺっと,thú cưng,danh từ,N5
+部屋,へや,căn phòng,danh từ,N5
+辺,へん,khu vực,danh từ,N5
+ペン,ぺん,bút,danh từ,N5
+帽子,ぼうし,mũ,danh từ,N5
+ボールペン,ぼーるぺん,bút bi,danh từ,N5
+ポケット,ぽけっと,"túi (áo, quần)",danh từ,N5
+ボタン,ぼたん,nút,danh từ,N5
+ホテル,ほてる,khách sạn,danh từ,N5
+本,ほん,cuốn sách,danh từ,N5
+本棚,ほんだな,giá sách,danh từ,N5
+本当,ほんとう,sự thật,danh từ,N5
+毎朝,まいあさ,mỗi buổi sáng,danh từ,N5
+毎月,まいげつ/まいつき,mỗi tháng,danh từ,N5
+毎週,まいしゅう,mỗi tuần,danh từ,N5
+毎日,まいにち,mỗi ngày,danh từ,N5
+毎年,まいねん/まいとし,mỗi năm,danh từ,N5
+毎晩,まいばん,mỗi tối,danh từ,N5
+前,まえ,trước,danh từ,N5
+町,まち,"thị xã, thành phố",danh từ,N5
+窓,まど,cửa sổ,danh từ,N5
+万,まん,vạn (mười nghìn),danh từ,N5
+万年筆,まんねんひつ,bút mực,danh từ,N5
+右,みぎ,bên phải,danh từ,N5
+水,みず,nước,danh từ,N5
+店,みせ,"cửa hàng, cửa tiệm",danh từ,N5
+道,みち,đường phố,danh từ,N5
+三つ,みっつ,ba cái (đếm đồ vật nói chung),danh từ,N5
+緑,みどり,màu xanh lá cây,danh từ,N5
+皆さん,みなさん,tất cả mọi người,danh từ,N5
+南,みなみ,phía Nam,danh từ,N5
+耳,みみ,tai,danh từ,N5
+みんな,みんな,tất cả,danh từ,N5
+向こう,むこう,phía bên kia,danh từ,N5
+六つ,むっつ,sáu cái (đếm đồ vật nói chung),danh từ,N5
+村,むら,làng,danh từ,N5
+目,め,mắt,danh từ,N5
+メートル,めーとる,mét,danh từ,N5
+眼鏡,めがね,kính,danh từ,N5
+もう一度,もういちど,một lần nữa,danh từ,N5
+木曜日,もくようび,Thứ năm,danh từ,N5
+物,もの,đồ vật,danh từ,N5
+門,もん,"cổng, cửa",danh từ,N5
+問題,もんだい,vấn đề,danh từ,N5
+八百屋,やおや,cửa hàng rau,danh từ,N5
+野菜,やさい,rau,danh từ,N5
+休み,やすみ,"nghỉ, nghỉ ngơi",danh từ,N5
+八つ,やっつ,tám cái (đếm vật nói chung),danh từ,N5
+山,やま,núi,danh từ,N5
+夕方,ゆうがた,chiều tối,danh từ,N5
+夕飯,ゆうはん,bữa ăn tối,danh từ,N5
+郵便局,ゆうびんきょく,bưu điện,danh từ,N5
+ゆうべ,ゆうべ,đêm qua,danh từ,N5
+洋服,ようふく,quần áo kiểu phương Tây,danh từ,N5
+横,よこ,"bên cạnh, bên, chiều rộng",danh từ,N5
+四つ,よっつ,bốn cái (đếm đồ vật nói chung),danh từ,N5
+夜,よる,"buổi tối, ban đêm",danh từ,N5
+来月,らいげつ,tháng sau,danh từ,N5
+来週,らいしゅう,tuần sau,danh từ,N5
+来年,らいねん,năm sau,danh từ,N5
+ラジオ,らじお,radio,danh từ,N5
+ラジカセ / ラジオカセット,らじかせ/らじおかせっと,đài cassette,danh từ,N5
+留学生,りゅうがくせい,du học sinh,danh từ,N5
+両親,りょうしん,bố mẹ,danh từ,N5
+料理,りょうり,"nấu ăn, món ăn",danh từ,N5
+旅行,りょこう,du lịch,danh từ,N5
+ゼロ,ぜろ,số 0,danh từ,N5
+冷蔵庫,れいぞうこ,tủ lạnh,danh từ,N5
+レストラン,れすとらん,nhà hàng,danh từ,N5
+廊下,ろうか,hành lang,danh từ,N5
+六,ろく,sáu,danh từ,N5
+ワイシャツ,わいしゃつ,áo sơ mi,danh từ,N5
+私,わたくし,tôi (khiêm nhường ngữ),danh từ,N5
+私,わたし,Tôi,danh từ,N5
+会う,あう,Gặp mặt,động từ,N5
+開く,あく,mở (tự động từ),động từ,N5
+開ける,あける,mở (tha động từ),động từ,N5
+上げる,あげる,"Nâng lên, tăng lên",động từ,N5
+遊ぶ,あそぶ,Chơi,động từ,N5
+浴びる,あびる,tắm (vòi hoa sen),động từ,N5
+洗う,あらう,rửa,động từ,N5
+ある,ある,"Có (dùng cho đồ vật, vật vô tri vô giác)",động từ,N5
+歩く,あるく,đi bộ,động từ,N5
+いる,いる,có (được sử dụng cho người và động vật),động từ,N5
+要る,いる,cần,động từ,N5
+入れる,いれる,"Cho vào, đưa vào",động từ,N5
+歌う,うたう,hát,động từ,N5
+生まれる,うまれる,được sinh ra,động từ,N5
+売る,うる,bán,động từ,N5
+教える,おしえる,"dạy, chỉ cho biết",động từ,N5
+覚える,おぼえる,nhớ,động từ,N5
+降りる,おりる,xuống,động từ,N5
+終る,おわる,kết thúc,động từ,N5
+買う,かう,mua,động từ,N5
+返す,かえす,trả lại,động từ,N5
+帰る,かえる,về,động từ,N5
+かかる,かかる,"mất, tốn (thời gian, tiền bạc…)",động từ,N5
+書く,かく,viết,động từ,N5
+貸す,かす,"cho vay, cho mượn",động từ,N5
+借りる,かりる,"vay, mượn",động từ,N5
+消える,きえる,"biến mất, tắt (điện)",động từ,N5
+聞く,きく,"nghe, hỏi",động từ,N5
+切る,きる,cắt,động từ,N5
+着る,きる,mặc (đưa từ trên xuống như áo…),động từ,N5
+曇る,くもる,"có mây, nhiều mây",động từ,N5
+来る,くる,đến,động từ,N5
+答える,こたえる,trả lời,động từ,N5
+コピーする,こぴーする,"copy, sao chép",động từ,N5
+困る,こまる,"bối rối, khó khăn, rắc rối",động từ,N5
+散歩,さんぽする,đi dạo,động từ,N5
+閉まる,しまる,đóng (tự động từ),động từ,N5
+閉める,しめる,đóng (tha động từ),động từ,N5
+知る,しる,biết,động từ,N5
+吸う,すう,hút,động từ,N5
+住む,すむ,sống,động từ,N5
+する,する,"làm, chơi, tổ chức…",động từ,N5
+座る,すわる,ngồi,động từ,N5
+掃除する,そうじする,dọn dẹp,động từ,N5
+出す,だす,"lấy ra, nộp, gửi (thư)",động từ,N5
+立つ,たつ,đứng,động từ,N5
+頼む,たのむ,nhờ,động từ,N5
+食べる,たべる,ăn,động từ,N5
+使う,つかう,sử dụng,động từ,N5
+疲れる,つかれる,mệt mỏi,động từ,N5
+着く,つく,đến,động từ,N5
+作る,つくる,"làm, chế tạo, nấu ăn",động từ,N5
+つける,つける,bật,động từ,N5
+勤める,つとめる,làm việc,động từ,N5
+出かける,でかける,đi ra ngoài,động từ,N5
+出る,でる,"ra, rời khỏi, xuất hiện",động từ,N5
+飛ぶ,とぶ,"bay, nhảy",động từ,N5
+止まる,とまる,dừng lại (tự động từ),động từ,N5
+止める,とめる,"Đỗ, đậu (xe, đài..) (Tha động từ)",động từ,N5
+取る,とる,lấy (muối…),động từ,N5
+撮る,とる,chụp ảnh hoặc quay phim,động từ,N5
+鳴く,なく,"kêu, hót",động từ,N5
+無くす,なくす,"làm mất, đánh mất",động từ,N5
+習う,ならう,học,động từ,N5
+並ぶ,ならぶ,"xếp hàng, ngang bằng",động từ,N5
+並べる,ならべる,"sắp xếp, bố trí",động từ,N5
+なる,なる,"trở nên, trở thành",động từ,N5
+脱ぐ,ぬぐ,cởi,động từ,N5
+寝る,ねる,"đi ngủ, ngủ",động từ,N5
+登る,のぼる,leo lên,động từ,N5
+飲む,のむ,uống,động từ,N5
+乗る,のる,"lên (tàu, xe…) cưỡi ngựa",động từ,N5
+入る,はいる,"vào, đi vào",động từ,N5
+履く,はく,"mặc, đi (từ dưới lên)",động từ,N5
+始まる,はじまる,được bắt đầu (tự động từ),động từ,N5
+始める,はじめる,bắt đầu (tha động từ),động từ,N5
+走る,はしる,chạy,động từ,N5
+働く,はたらく,làm việc,động từ,N5
+話す,はなす,nói chuyện,động từ,N5
+貼る,はる,dán,động từ,N5
+晴れる,はれる,"có nắng, thời tiết đẹp",động từ,N5
+引く,ひく,kéo,động từ,N5
+弾く,ひく,chơi (nhạc cụ),động từ,N5
+吹く,ふく,thổi,động từ,N5
+降る,ふる,"rơi (mưa, tuyết)",động từ,N5
+勉強する,べんきょうする,học,động từ,N5
+曲る,まがる,"rẽ, cong",động từ,N5
+待つ,まつ,chờ đợi,động từ,N5
+右,みぎ,bên phải,danh từ,N5
+見せる,みせる,cho xem,động từ,N5
+見る,みる,"xem, nhìn, trông",động từ,N5
+持つ,もつ,"mang, cầm",động từ,N5
+休む,やすむ,"nghỉ, nghỉ ngơi",động từ,N5
+やる,やる,làm,động từ,N5
+呼ぶ,よぶ,gọi,động từ,N5
+読む,よむ,đọc,động từ,N5
+練習,れんしゅうする,"thực hành, luyện tập",động từ,N5
+分かる,わかる,"hiểu, nắm được",động từ,N5
+忘れる,わすれる,quên,động từ,N5
+渡す,わたす,đưa cho,động từ,N5
+渡る,わたる,"đi qua, băng qua",động từ,N5
+青い,あおい,Xanh da trời,tính từ,N5
+赤い,あかい,màu đỏ,tính từ,N5
+明い,あかるい,"sáng, tươi sáng, vui vẻ, sáng sủa",tính từ,N5
+暖かい,あたたかい,ấm áp,tính từ,N5
+新しい,あたらしい,mới,tính từ,N5
+暑い,あつい,nóng (thời tiết),tính từ,N5
+熱い,あつい,nóng (khi chạm vào),tính từ,N5
+厚い,あつい,dày,tính từ,N5
+危ない,あぶない,nguy hiểm,tính từ,N5
+甘い,あまい,"ngọt, ngọt ngào",tính từ,N5
+いい/よい,いい/よい,tốt,tính từ,N5
+忙しい,いそがしい,bận rộn,tính từ,N5
+痛い,いたい,đau,tính từ,N5
+うるさい,うるさい,"ồn ào, gây phiền nhiễu",tính từ,N5
+美味しい,おいしい,ngon,tính từ,N5
+多い,おおい,nhiều,tính từ,N5
+大きい,おおきい,"to, lớn",tính từ,N5
+遅い,おそい,"muộn, chậm",tính từ,N5
+重い,おもい,nặng,tính từ,N5
+おもしろい,おもしろい,thú vị,tính từ,N5
+辛い,からい,cay,tính từ,N5
+軽い,かるい,nhẹ,tính từ,N5
+かわいい,かわいい,dễ thương,tính từ,N5
+黄色い,きいろい,màu vàng,tính từ,N5
+汚い,きたない,bẩn,tính từ,N5
+暗い,くらい,tối,tính từ,N5
+寒い,さむい,lạnh,tính từ,N5
+白い,しろい,trắng,tính từ,N5
+少ない,すくない,"một chút, một ít",tính từ,N5
+涼しい,すずしい,mát,tính từ,N5
+狭い,せまい,hẹp,tính từ,N5
+楽しい,たのしい,vui,tính từ,N5
+小さい,ちいさい,nhỏ,tính từ,N5
+近い,ちかい,gần,tính từ,N5
+つまらない,つまらない,nhàm chán,tính từ,N5
+冷たい,つめたい,"lạnh, buốt (khi chạm vào)",tính từ,N5
+遠い,とおい,xa,tính từ,N5
+長い,ながい,dài,tính từ,N5
+早い,はやい,sớm,tính từ,N5
+速い,はやい,nhanh chóng,tính từ,N5
+広い,ひろい,"rộng rãi, rộng",tính từ,N5
+太い,ふとい,béo,tính từ,N5
+古い,ふるい,cũ (không dùng cho người),tính từ,N5
+欲しい,ほしい,muốn,tính từ,N5
+細い,ほそい,"gầy, hẹp, thon",tính từ,N5
+まずい,まずい,"dở (món ăn), không ổn rồi",tính từ,N5
+丸い,まるい,tròn,tính từ,N5
+短い,みじかい,ngắn,tính từ,N5
+難しい,むずかしい,khó,tính từ,N5
+安い,やすい,giá rẻ,tính từ,N5
+弱い,よわい,yếu,tính từ,N5
+強い,つよい,mạnh,tính từ,N5
+若い,わかい,trẻ,tính từ,N5
+悪い,わるい,xấu,tính từ,N5
+嫌,いや,"Chán, ghét, khó chịu",tính từ,N5
+いろいろ,いろいろ,"Nhiều, đa dạng",tính từ,N5
+すてき,すてき,"Đẹp, hay",tính từ,N5
+嫌い,きらい,"ghét, không thích",tính từ,N5
+きれい,きれい,"đẹp, sạch sẽ",tính từ,N5
+結構,けっこう,đủ,tính từ,N5
+元気,げんき,khỏe mạnh,tính từ,N5
+静か,しずか,yên tĩnh,tính từ,N5
+上手,じょうず,"giỏi, khéo",tính từ,N5
+丈夫,じょうぶ,"chắc, bền",tính từ,N5
+好き,すき,thích,tính từ,N5
+大丈夫,だいじょうぶ,"không sao, không vấn đề gì",tính từ,N5
+大好き,だいすき,rất thích,tính từ,N5
+大切,たいせつ,"quan trọng, quý giá",tính từ,N5
+大変,たいへん,"kho khăn, vất vả",tính từ,N5
+小さな,ちいさな,Nhỏ,tính từ,N5
+賑やか,にぎやか,náo nhiệt,tính từ,N5
+暇,ひま,rảnh rỗi,tính từ,N5
+便利,べんり,tiện lợi,tính từ,N5
+りっぱ,りっぱ,"lộng lẫy, tuyệt vời",tính từ,N5
+不便,ふべん,Bất tiện,tính từ,N5
+簡単,かんたん,Đơn giản,tính từ,N5
+あまり,あまり,Không~lắm,tính từ,N5
+一緒,いっしょ,cùng nhau,tính từ,N5
+後,あと,sau đó,danh từ,N5
+あのう,あのう,"à, ừm… (dùng trong giao tiếp, biểu thị sự ngại ngùng, do dự)",danh từ,N5
+いいえ,いいえ,không,danh từ,N5
+いかが,いかが,như thế nào (cách nói lịch sự của どう）,danh từ,N5
+いくつ,いくつ,bao nhiêu cái? bao nhiêu tuổi?,danh từ,N5
+いくら,いくら,bao nhiêu? (Hỏi giá tiền),danh từ,N5
+いつ,いつ,khi nào,danh từ,N5
+いつも,いつも,luôn luôn,danh từ,N5
+ええ,ええ,"Vâng, có..(bằng はい）",danh từ,N5
+先,さき,trước (làm cái gì đó trước),danh từ,N5
+しかし,しかし,Tuy nhiên,danh từ,N5
+すぐに,すぐに,ngay lập tức,danh từ,N5
+その,その,~đó,danh từ,N5
+それから,それから,sau đó,danh từ,N5
+それでは,それでは,"vậy thì, thế thì",danh từ,N5
+たくさん,たくさん,nhiều,danh từ,N5
+たぶん,たぶん,"có thể, có lẽ",danh từ,N5
+誰,だれ,"ai, người nào",danh từ,N5
+誰,だれか,ai đó,danh từ,N5
+だんだん,だんだん,dần,danh từ,N5
+ちょうど,ちょうど,"vừa đúng, vừa đủ",danh từ,N5
+ちょっと,ちょっと,"một ít, một chút",danh từ,N5
+次,つぎ,tiếp theo,danh từ,N5
+どう,どう,như thế nào,danh từ,N5
+どうして,どうして,tại sao,danh từ,N5
+どうぞ,どうぞ,xin mời,danh từ,N5
+どこ,どこ,chỗ nào,danh từ,N5
+どちら,どちら,phía nào,danh từ,N5
+どっち,どっち,phía nào (thân mật của どちら),danh từ,N5
+どれ,どれ,cái nào,danh từ,N5
+なぜ,なぜ,tại sao,danh từ,N5
+など,など,vân vân,danh từ,N5
+何,なん/なに,"gì, cái gì",danh từ,N5
+はい,はい,"vâng, có",danh từ,N5
+ほか,ほか,khác,danh từ,N5
+まっすぐ,まっすぐ,thẳng,danh từ,N5
+さあ,さあ,dùng để chuyển đề tài,danh từ,N5

@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { Home, BookOpen, Gamepad2, Star, User, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Home, BookOpen, Star, User, Settings, LogOut, ChevronDown, Search, PenTool, Trophy } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-const Navigation = ({ currentPage, setCurrentPage }) => {
+const Navigation = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  
+  // Extract current page from pathname
+  const currentPage = location.pathname.substring(1) || 'home';
 
   const pages = [
     { id: 'home', name: 'Trang chủ', icon: Home, color: 'from-blue-500 to-blue-600' },
     { id: 'alphabet', name: 'Bảng chữ cái', icon: BookOpen, color: 'from-purple-500 to-purple-600' },
     { id: 'vocabulary', name: 'Từ vựng', icon: Star, color: 'from-green-500 to-green-600' },
-    { id: 'quiz', name: 'Quiz', icon: Gamepad2, color: 'from-pink-500 to-pink-600' }
+    { id: 'dictionary', name: 'Từ điển', icon: Search, color: 'from-indigo-500 to-blue-600' },
+    { id: 'kanji', name: 'Kanji', icon: PenTool, color: 'from-purple-600 to-indigo-600' },
+    { id: 'quiz-hub', name: 'Quiz Hub', icon: Trophy, color: 'from-purple-500 to-pink-600' }
   ];
 
   const handleLogout = async () => {
@@ -19,7 +27,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-2xl">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center justify-between h-16">
@@ -39,7 +47,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                 return (
                   <button
                     key={page.id}
-                    onClick={() => setCurrentPage(page.id)}
+                    onClick={() => navigate(`/${page.id}`)}
                     className={`group relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                       isActive 
                         ? `bg-gradient-to-r ${page.color} text-white shadow-lg transform scale-105` 
@@ -87,7 +95,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                     
                     <button
                       onClick={() => {
-                        setCurrentPage('profile');
+                        navigate('/profile');
                         setShowUserMenu(false);
                       }}
                       className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -98,7 +106,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                     
                     <button
                       onClick={() => {
-                        setCurrentPage('change-password');
+                        navigate('/change-password');
                         setShowUserMenu(false);
                       }}
                       className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -153,7 +161,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
               return (
                 <button
                   key={page.id}
-                  onClick={() => setCurrentPage(page.id)}
+                  onClick={() => navigate(`/${page.id}`)}
                   className={`flex items-center justify-center space-x-2 px-3 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
                     isActive 
                       ? `bg-gradient-to-r ${page.color} text-white shadow-lg` 
@@ -171,7 +179,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
           {user && (
             <div className="grid grid-cols-2 gap-2">
               <button
-                onClick={() => setCurrentPage('profile')}
+                onClick={() => navigate('/profile')}
                 className={`flex items-center justify-center space-x-2 px-3 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
                   currentPage === 'profile'
                     ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg' 
@@ -182,7 +190,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                 <span className="text-xs">Hồ sơ</span>
               </button>
               <button
-                onClick={() => setCurrentPage('change-password')}
+                onClick={() => navigate('/change-password')}
                 className={`flex items-center justify-center space-x-2 px-3 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
                   currentPage === 'change-password'
                     ? 'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-lg' 
