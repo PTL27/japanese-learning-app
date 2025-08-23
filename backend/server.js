@@ -13,7 +13,10 @@ const vocabularyRoutes = require('./routes/vocabulary');
 const dictionaryRoutes = require('./routes/dictionary');
 const kanjiRoutes = require('./routes/kanji');
 const quizRoutes = require('./routes/quiz');
+const weeklyChallengeRoutes = require('./routes/weekly-challenge');
+const friendsRoutes = require('./routes/friends');
 const { initDatabase } = require('./database/database');
+const cronService = require('./services/cronService');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -24,7 +27,7 @@ app.use(helmet());
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 1000 // limit each IP to 1000 requests per windowMs for development
 });
 app.use(limiter);
 
@@ -68,6 +71,8 @@ app.use('/api/vocabulary', vocabularyRoutes);
 app.use('/api/dictionary', dictionaryRoutes);
 app.use('/api/kanji', kanjiRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/weekly-challenge', weeklyChallengeRoutes);
+app.use('/api/friends', friendsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -106,6 +111,10 @@ const startServer = async () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📱 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
       console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
+      
+      // Start cron service
+      console.log('\n⏰ Starting scheduled services...');
+      cronService.start();
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
@@ -117,6 +126,13 @@ startServer();
 
 // Graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\n👋 Shutting down server...');
+  console.log('\n🛑 Shutting down gracefully...');
+  cronService.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  cronService.stop();
   process.exit(0);
 });

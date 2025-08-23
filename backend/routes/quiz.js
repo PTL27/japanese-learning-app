@@ -149,6 +149,12 @@ router.post('/generate', authenticateToken, async (req, res) => {
 
     const sessionId = sessionResult.id;
     console.log('✅ Created new quiz session:', sessionId);
+    
+    // Debug: Check session state immediately after creation
+    const newSession = await getQuery(`
+      SELECT id, completed_at FROM quiz_sessions WHERE id = ?
+    `, [sessionId]);
+    console.log('🔍 New session state after creation:', newSession);
 
     // Generate questions for each vocabulary word
     const questions = [];
@@ -320,12 +326,20 @@ router.post('/submit', authenticateToken, async (req, res) => {
 
     const scorePercentage = (correctAnswers / questions.length) * 100;
 
+    // Debug: Check session state before update
+    const sessionBeforeUpdate = await getQuery(`
+      SELECT id, completed_at FROM quiz_sessions WHERE id = ?
+    `, [session_id]);
+    console.log('🔍 Session state before update:', sessionBeforeUpdate);
+
     // Update quiz session with results (with additional safeguard)
     const updateResult = await runQuery(`
       UPDATE quiz_sessions 
       SET correct_answers = ?, incorrect_answers = ?, score_percentage = ?, time_spent = ?, completed_at = datetime('now')
       WHERE id = ? AND completed_at IS NULL
     `, [correctAnswers, incorrectAnswers, scorePercentage, time_spent, session_id]);
+    
+    console.log('🔍 Update result changes:', updateResult.changes);
     
     // Double-check that the update succeeded
     if (updateResult.changes === 0) {
@@ -355,6 +369,8 @@ router.post('/submit', authenticateToken, async (req, res) => {
       WHERE qq.session_id = ?
       ORDER BY qq.id
     `, [session_id]);
+
+    // Quiz submission successful - no leaderboard integration needed
 
     res.json({
       success: true,

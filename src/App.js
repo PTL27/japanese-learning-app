@@ -9,6 +9,10 @@ import DictionaryPage from './components/DictionaryPage';
 import KanjiPage from './components/KanjiPage';
 import QuizMainPage from './components/QuizMainPage';
 import QuizHubPage from './components/QuizHubPage';
+import WeeklyChallengePage from './components/WeeklyChallengeePage';
+import WeeklyChallengeQuiz from './components/WeeklyChallengeQuiz';
+import WeeklyChallengeResult from './components/WeeklyChallengeResult';
+import FriendsPage from './components/FriendsPage';
 import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
@@ -180,6 +184,26 @@ const Layout = () => {
           <Route path="/quiz-hub" element={
             <ProtectedRoute>
               <QuizHubPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/weekly-challenge" element={
+            <ProtectedRoute>
+              <WeeklyChallengePage />
+            </ProtectedRoute>
+          } />
+          <Route path="/weekly-challenge/:level/:challengeId" element={
+            <ProtectedRoute>
+              <WeeklyChallengeQuiz />
+            </ProtectedRoute>
+          } />
+          <Route path="/weekly-challenge-result" element={
+            <ProtectedRoute>
+              <WeeklyChallengeResult />
+            </ProtectedRoute>
+          } />
+          <Route path="/friends" element={
+            <ProtectedRoute>
+              <FriendsPage />
             </ProtectedRoute>
           } />
           <Route path="/profile" element={

@@ -32,17 +32,30 @@ const OAuthCallback = () => {
       
       if (token) {
         try {
+          console.log('🔍 Received token:', token.substring(0, 20) + '...');
+          
           // Store token in localStorage
           localStorage.setItem('jwt_token', token);
           
+          console.log('🔍 Verifying token with backend...');
+          
           // Verify token with backend
           const response = await fetch('http://localhost:5001/api/auth/verify', {
+            method: 'GET',
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
             }
           });
           
+          console.log('🔍 Verify response status:', response.status);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          
           const data = await response.json();
+          console.log('🔍 Verify response data:', data);
           
           if (data.success) {
             setStatus('success');
@@ -53,12 +66,12 @@ const OAuthCallback = () => {
               window.location.href = '/';
             }, 2000);
           } else {
-            throw new Error('Invalid token');
+            throw new Error('Invalid token response');
           }
         } catch (error) {
-          console.error('OAuth callback error:', error);
+          console.error('❌ OAuth callback error:', error);
           setStatus('error');
-          setMessage('Authentication verification failed. Please try logging in again.');
+          setMessage(`Authentication verification failed: ${error.message}`);
           localStorage.removeItem('jwt_token');
         }
       } else {

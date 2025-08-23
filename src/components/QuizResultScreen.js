@@ -4,6 +4,7 @@ import {
   RotateCcw, Home, BookOpen, Zap
 } from 'lucide-react';
 import Fireworks from 'fireworks-js';
+import { useAuth } from '../contexts/AuthContext';
 
 // Enhanced Fireworks Animation Component using fireworks-js
 const FireworksDisplay = ({ onComplete }) => {
@@ -450,7 +451,7 @@ const PerformanceAnalysis = ({ result }) => {
 };
 
 // Main Quiz Result Screen Component
-const QuizResultScreen = ({ result, quizNumber, onRetakeQuiz, onBackToHome }) => {
+const QuizResultScreen = ({ result, quizNumber, onRetakeQuiz, onBackToHome, quizMetadata = {} }) => {
   const { 
     score_percentage, 
     correct_answers, 
@@ -459,6 +460,7 @@ const QuizResultScreen = ({ result, quizNumber, onRetakeQuiz, onBackToHome }) =>
     time_spent 
   } = result;
 
+  const { user } = useAuth();
   const [showFireworks, setShowFireworks] = useState(false);
 
   useEffect(() => {
@@ -477,6 +479,9 @@ const QuizResultScreen = ({ result, quizNumber, onRetakeQuiz, onBackToHome }) =>
       console.log('🎆 Score too low for fireworks:', score_percentage);
     }
   }, [score_percentage]);
+
+  // Leaderboard is now updated automatically by backend after quiz submission
+  // This component no longer needs to call leaderboard API directly
 
   // Determine overall result styling
   let resultData = {};

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Star, User, Settings, LogOut, ChevronDown, Search, PenTool, Trophy } from 'lucide-react';
+import { Home, BookOpen, Star, User, Settings, LogOut, ChevronDown, Search, PenTool, Trophy, Award, Users } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
@@ -18,7 +18,9 @@ const Navigation = () => {
     { id: 'vocabulary', name: 'Từ vựng', icon: Star, color: 'from-green-500 to-green-600' },
     { id: 'dictionary', name: 'Từ điển', icon: Search, color: 'from-indigo-500 to-blue-600' },
     { id: 'kanji', name: 'Kanji', icon: PenTool, color: 'from-purple-600 to-indigo-600' },
-    { id: 'quiz-hub', name: 'Quiz Hub', icon: Trophy, color: 'from-purple-500 to-pink-600' }
+    { id: 'quiz-hub', name: 'Quiz Hub', icon: Trophy, color: 'from-purple-500 to-pink-600' },
+    { id: 'weekly-challenge', name: 'Weekly Challenge', icon: Award, color: 'from-yellow-500 to-orange-600' },
+    { id: 'friends', name: 'Bạn bè', icon: Users, color: 'from-green-500 to-teal-600' }
   ];
 
   const handleLogout = async () => {
@@ -28,7 +30,7 @@ const Navigation = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-2xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
         {/* Header */}
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
@@ -39,8 +41,8 @@ const Navigation = () => {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-baseline space-x-2">
+          <div className="hidden xl:flex items-center space-x-6">
+            <div className="flex items-baseline space-x-1">
               {pages.map(page => {
                 const Icon = page.icon;
                 const isActive = currentPage === page.id;
@@ -48,14 +50,14 @@ const Navigation = () => {
                   <button
                     key={page.id}
                     onClick={() => navigate(`/${page.id}`)}
-                    className={`group relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
+                    className={`group relative px-2.5 py-2 rounded-lg font-medium text-xs transition-all duration-200 ${
                       isActive 
                         ? `bg-gradient-to-r ${page.color} text-white shadow-lg transform scale-105` 
                         : 'text-gray-300 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    <div className="flex items-center space-x-2">
-                      <Icon size={18} className={`transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+                    <div className="flex items-center space-x-1.5">
+                      <Icon size={16} className={`transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
                       <span>{page.name}</span>
                     </div>
                     {!isActive && (
@@ -132,7 +134,7 @@ const Navigation = () => {
         </div>
         
         {/* Mobile Navigation */}
-        <div className="md:hidden py-4">
+        <div className="xl:hidden py-4">
           {/* User Info on Mobile - Only show when authenticated */}
           {user && (
             <div className="flex items-center justify-between mb-4 px-2">
