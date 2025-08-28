@@ -172,7 +172,112 @@ router.get('/grade/:level', async (req, res) => {
   }
 });
 
-// Get kanji by JLPT level
+// Get kanji by JLPT level with pagination support
+router.get('/level/:level', [
+  query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
+  query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit must be between 1 and 100'),
+  query('search').optional().isString().withMessage('Search must be a string')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid parameters',
+        errors: errors.array()
+      });
+    }
+
+    const { level } = req.params;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 24;
+    const search = req.query.search || '';
+    const offset = (page - 1) * limit;
+
+    // Convert JLPT levels to database levels
+    // N5 -> 4, N4 -> 3, N3 -> 2, N2 -> 1, N1 -> 1 (but we don't have separate N1 data)
+    let levelNumber;
+    switch (level) {
+      case 'N5': levelNumber = 4; break;
+      case 'N4': levelNumber = 3; break;
+      case 'N3': levelNumber = 2; break;
+      case 'N2': levelNumber = 1; break;
+      case 'N1': levelNumber = 1; break; // N1 and N2 both map to level 1
+      default:
+        return res.status(400).json({
+          success: false,
+          message: 'JLPT level must be N1, N2, N3, N4, or N5'
+        });
+    }
+
+    console.log(`Kanji JLPT search: ${level}, page: ${page}, limit: ${limit}, search: "${search}"`);
+
+    let whereClause = 'WHERE jlpt_level = ?';
+    let params = [levelNumber];
+
+    // Add search functionality
+    if (search) {
+      whereClause += ` AND (
+        character LIKE ? OR 
+        meanings LIKE ? OR 
+        on_readings LIKE ? OR 
+        kun_readings LIKE ?
+      )`;
+      const searchPattern = `%${search}%`;
+      params.push(searchPattern, searchPattern, searchPattern, searchPattern);
+    }
+
+    // Get total count for pagination
+    const countQuery = `SELECT COUNT(*) as total FROM kanji ${whereClause}`;
+    const totalResult = await getQuery(countQuery, params);
+    const total = totalResult.total;
+
+    // Get paginated results
+    const dataQuery = `
+      SELECT * FROM kanji 
+      ${whereClause}
+      ORDER BY frequency_rank ASC, character ASC
+      LIMIT ? OFFSET ?
+    `;
+    const results = await allQuery(dataQuery, [...params, limit, offset]);
+
+    const processedResults = results.map(kanji => ({
+      id: kanji.id,
+      character: kanji.character,
+      meanings: kanji.meanings ? JSON.parse(kanji.meanings) : [],
+      on_readings: kanji.on_readings ? JSON.parse(kanji.on_readings) : [],
+      kun_readings: kanji.kun_readings ? JSON.parse(kanji.kun_readings) : [],
+      stroke_count: kanji.stroke_count,
+      grade_level: kanji.grade_level,
+      frequency_rank: kanji.frequency_rank,
+      jlpt_level: kanji.jlpt_level
+    }));
+
+    const totalPages = Math.ceil(total / limit);
+
+    res.json({
+      success: true,
+      data: processedResults,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages
+      },
+      jlpt_level: level,
+      search: search || null
+    });
+
+  } catch (error) {
+    console.error('Kanji JLPT level search error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error'
+    });
+  }
+});
+
+// Get kanji by JLPT level (legacy)
 router.get('/jlpt/:level', async (req, res) => {
   try {
     const { level } = req.params;
