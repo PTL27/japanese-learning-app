@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { SocketProvider } from './contexts/SocketContext';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import AlphabetPage from './components/AlphabetPage';
 import VocabularyPage from './components/VocabularyPage';
+import GrammarPage from './components/GrammarPage';
 import DictionaryPage from './components/DictionaryPage';
 import KanjiPage from './components/KanjiPage';
 import QuizMainPage from './components/QuizMainPage';
@@ -13,6 +15,7 @@ import WeeklyChallengePage from './components/WeeklyChallengeePage';
 import WeeklyChallengeQuiz from './components/WeeklyChallengeQuiz';
 import WeeklyChallengeResult from './components/WeeklyChallengeResult';
 import FriendsPage from './components/FriendsPage';
+import ChatPage from './components/ChatPage';
 import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
@@ -166,6 +169,11 @@ const Layout = () => {
               <VocabularyPage />
             </ProtectedRoute>
           } />
+          <Route path="/grammar" element={
+            <ProtectedRoute>
+              <GrammarPage />
+            </ProtectedRoute>
+          } />
           <Route path="/dictionary" element={
             <ProtectedRoute>
               <DictionaryPage />
@@ -206,6 +214,11 @@ const Layout = () => {
               <FriendsPage />
             </ProtectedRoute>
           } />
+          <Route path="/chat" element={
+            <ProtectedRoute>
+              <ChatPage />
+            </ProtectedRoute>
+          } />
           <Route path="/profile" element={
             <ProtectedRoute>
               <ProfilePage />
@@ -230,9 +243,11 @@ const Layout = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
-        <Layout />
-      </Router>
+      <SocketProvider>
+        <Router>
+          <Layout />
+        </Router>
+      </SocketProvider>
     </AuthProvider>
   );
 };

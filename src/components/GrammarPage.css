@@ -1,0 +1,394 @@
+.grammar-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding-bottom: 40px;
+}
+
+.grammar-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.grammar-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.grammar-header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.grammar-level-tabs {
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.grammar-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.level-info {
+  margin: 30px 0;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.level-info h2 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.level-info p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Search Section */
+.search-section {
+  margin: 25px 0;
+}
+
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 15px 15px 50px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.results-summary {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+/* Grammar Grid - 2 columns */
+.grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.grammar-item {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.grammar-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-color: #e0e0e0;
+}
+
+.pattern-info {
+  margin-bottom: 15px;
+}
+
+.pattern {
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: 'Noto Sans JP', sans-serif;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.meaning {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  display: block;
+}
+
+.preview-example {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #4A90E2;
+}
+
+.preview-example .japanese {
+  font-size: 1.2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.preview-example .translation {
+  color: #666;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.click-hint {
+  color: #999;
+  font-size: 13px;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.page-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid;
+  border-radius: 8px;
+  background: transparent;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-btn:hover {
+  transform: translateY(-1px);
+}
+
+.page-ellipsis {
+  padding: 0 8px;
+  color: #999;
+}
+
+.clear-search-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.japanese {
+  font-size: 1.3rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #2c3e50;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.translation {
+  color: #666;
+  font-style: italic;
+  margin: 8px 0;
+}
+
+.notes {
+  color: #666;
+  font-size: 0.95rem;
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid #ffc107;
+}
+
+.no-data {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.no-data p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grammar-header {
+    padding: 30px 15px 15px;
+  }
+
+  .grammar-header h1 {
+    font-size: 2rem;
+  }
+
+  .grammar-content {
+    padding: 0 15px;
+  }
+
+  .level-info {
+    margin: 20px 0;
+    padding: 20px;
+  }
+
+  .level-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    margin: 0 10px;
+  }
+
+  .grammar-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .grammar-item {
+    padding: 20px;
+  }
+
+  .pattern {
+    font-size: 1.4rem;
+  }
+
+  .preview-example .japanese {
+    font-size: 1.1rem;
+  }
+
+  .pagination {
+    gap: 10px;
+  }
+
+  .pagination-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .page-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grammar-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .grammar-header p {
+    font-size: 1rem;
+  }
+
+  .search-input {
+    font-size: 15px;
+    padding: 12px 12px 12px 45px;
+  }
+
+  .grammar-item {
+    padding: 15px;
+  }
+
+  .pattern {
+    font-size: 1.3rem;
+  }
+
+  .meaning {
+    font-size: 0.9rem;
+  }
+
+  .preview-example .japanese {
+    font-size: 1rem;
+  }
+
+  .pagination-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .page-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+}

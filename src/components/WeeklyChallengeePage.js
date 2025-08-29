@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Trophy, Clock, Star, Target, Calendar, Award, Play } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import JLPTLevelTabs from './common/JLPTLevelTabs';
 
 const WeeklyChallengePage = () => {
   console.log('🔍 WeeklyChallengePage component loaded');
@@ -153,24 +154,12 @@ const WeeklyChallengePage = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Level Selector */}
-        <div className="bg-white rounded-xl p-4 mb-8 shadow-sm border border-gray-200">
-          <div className="flex flex-wrap gap-2">
-            {['N5', 'N4', 'N3', 'N2', 'N1'].map(level => (
-              <button
-                key={level}
-                onClick={() => setSelectedLevel(level)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  selectedLevel === level
-                    ? 'bg-purple-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                JLPT {level}
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* Level Selector - Using standardized JLPT colors */}
+        <JLPTLevelTabs
+          selectedLevel={selectedLevel}
+          onLevelChange={setSelectedLevel}
+          className="weekly-challenge-level-tabs mb-8"
+        />
 
         {/* Tab Navigation */}
         <div className="bg-white rounded-xl p-2 mb-8 shadow-sm border border-gray-200">

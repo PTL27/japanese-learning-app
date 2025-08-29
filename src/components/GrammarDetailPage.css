@@ -1,0 +1,273 @@
+.grammar-detail-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.grammar-detail-header {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.level-badge {
+  padding: 8px 16px;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.grammar-detail-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.pattern-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 5px solid;
+}
+
+.pattern-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pattern-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+}
+
+.pronunciation-button {
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pronunciation-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.pattern-meaning {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.pattern-meaning h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pattern-meaning p {
+  margin: 0;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.section-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.section-content {
+  color: #555;
+  line-height: 1.6;
+}
+
+.section-content p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.example-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #4A90E2;
+}
+
+.example-item:last-child {
+  margin-bottom: 0;
+}
+
+.japanese-example {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.japanese-text {
+  font-size: 1.4rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.example-sound-button {
+  padding: 6px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sound-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.translation {
+  color: #666;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.notes-section .section-content {
+  margin-top: 10px;
+}
+
+.notes-content {
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #ffc107;
+}
+
+.notes-content p {
+  margin: 0;
+  color: #666;
+}
+
+.related-grammar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.related-tag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.related-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grammar-detail-page {
+    padding: 15px;
+  }
+
+  .grammar-detail-header {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .pattern-title {
+    font-size: 2rem;
+  }
+
+  .pattern-card {
+    padding: 20px;
+  }
+
+  .section-card {
+    padding: 20px;
+  }
+
+  .japanese-text {
+    font-size: 1.2rem;
+  }
+
+  .japanese-example {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pattern-title {
+    font-size: 1.8rem;
+  }
+
+  .pattern-card {
+    padding: 15px;
+  }
+
+  .section-card {
+    padding: 15px;
+  }
+
+  .example-item {
+    padding: 15px;
+  }
+}

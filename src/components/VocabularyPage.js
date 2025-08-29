@@ -1,48 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import { Volume2, Search, Filter, Star, BookOpen, Users, Loader, ChevronLeft, ChevronRight, Grid, List, Table } from 'lucide-react';
 import { playTextToSpeech } from '../utils/japaneseData';
+import JLPTLevelTabs from './common/JLPTLevelTabs';
 
 const VocabularyCard = ({ word, index }) => {
+  // Mapping from English to Vietnamese
+  const wordTypeMapping = {
+    'noun': 'Danh Từ',
+    'verb': 'Động Từ',
+    'adjective': 'Tính Từ',
+    'pronoun': 'Đại Từ',
+    'adverb': 'Trạng Từ',
+    'conjunction': 'Liên Từ',
+    'interjection': 'Thán Từ',
+    'particle': 'Trợ Từ',
+    'preposition': 'Giới Từ',
+    'Tính Từ い': 'Tính Từ い',
+    'Tính Từ な': 'Tính Từ な'
+  };
+
   const categoryColors = {
     'Danh Từ': 'from-blue-500 to-blue-600',
     'Động Từ': 'from-green-500 to-green-600', 
     'Tính Từ': 'from-purple-500 to-purple-600',
+    'Tính Từ い': 'from-purple-400 to-purple-500',
+    'Tính Từ な': 'from-purple-600 to-purple-700',
     'Đại Từ': 'from-pink-500 to-pink-600',
     'Trạng Từ': 'from-orange-500 to-orange-600',
-    'Liên Từ': 'from-teal-500 to-teal-600'
+    'Liên Từ': 'from-teal-500 to-teal-600',
+    'Thán Từ': 'from-red-500 to-red-600',
+    'Trợ Từ': 'from-yellow-500 to-yellow-600',
+    'Giới Từ': 'from-indigo-500 to-indigo-600'
   };
 
   const categoryBorders = {
     'Danh Từ': 'border-blue-500',
     'Động Từ': 'border-green-500',
     'Tính Từ': 'border-purple-500',
+    'Tính Từ い': 'border-purple-400',
+    'Tính Từ な': 'border-purple-600',
     'Đại Từ': 'border-pink-500', 
     'Trạng Từ': 'border-orange-500',
-    'Liên Từ': 'border-teal-500'
+    'Liên Từ': 'border-teal-500',
+    'Thán Từ': 'border-red-500',
+    'Trợ Từ': 'border-yellow-500',
+    'Giới Từ': 'border-indigo-500'
   };
 
+  const vietnameseWordType = wordTypeMapping[word.word_type] || word.word_type;
+
   return (
-    <div className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 ${categoryBorders[word.category]} overflow-hidden`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${categoryColors[word.category]} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+    <div className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 ${categoryBorders[vietnameseWordType]} overflow-hidden`}>
+      <div className={`absolute inset-0 bg-gradient-to-br ${categoryColors[vietnameseWordType]} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
       
       <div className="relative p-6">
         <div className="flex justify-between items-start mb-4">
           <div className="text-3xl font-bold text-slate-700 group-hover:text-slate-800 transition-colors">
-            {word.japanese}
+            {word.word}
           </div>
-          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${categoryColors[word.category]}`}>
+          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${categoryColors[vietnameseWordType]}`}>
             <Star className="w-3 h-3 mr-1" />
-            {word.category}
+            {vietnameseWordType}
           </div>
         </div>
         
         <div className="space-y-2 mb-4">
           <div className="text-xl text-gray-700 font-medium">
-            {word.hiragana}
-          </div>
-          
-          <div className="text-sm text-gray-500 font-mono">
-            {word.romaji}
+            {word.reading}
           </div>
         </div>
         
@@ -53,8 +77,8 @@ const VocabularyCard = ({ word, index }) => {
         </div>
         
         <button
-          onClick={() => playTextToSpeech(word.japanese)}
-          className={`group/btn w-full flex items-center justify-center space-x-2 bg-gradient-to-r ${categoryColors[word.category]} text-white px-4 py-3 rounded-xl hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 font-medium`}
+          onClick={() => playTextToSpeech(word.word)}
+          className={`group/btn w-full flex items-center justify-center space-x-2 bg-gradient-to-r ${categoryColors[vietnameseWordType]} text-white px-4 py-3 rounded-xl hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 font-medium`}
         >
           <Volume2 className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
           <span>Phát âm</span>
@@ -72,14 +96,34 @@ const VocabularyCard = ({ word, index }) => {
 };
 
 const VocabularyListItem = ({ word, index }) => {
+  // Mapping from English to Vietnamese
+  const wordTypeMapping = {
+    'noun': 'Danh Từ',
+    'verb': 'Động Từ',
+    'adjective': 'Tính Từ',
+    'pronoun': 'Đại Từ',
+    'adverb': 'Trạng Từ',
+    'conjunction': 'Liên Từ',
+    'interjection': 'Thán Từ',
+    'particle': 'Trợ Từ',
+    'preposition': 'Giới Từ',
+    'Tính Từ い': 'Tính Từ い',
+    'Tính Từ な': 'Tính Từ な'
+  };
+
   const categoryColors = {
     'Danh Từ': 'text-blue-600 bg-blue-50',
     'Động Từ': 'text-green-600 bg-green-50', 
     'Tính Từ': 'text-purple-600 bg-purple-50',
     'Đại Từ': 'text-pink-600 bg-pink-50',
     'Trạng Từ': 'text-orange-600 bg-orange-50',
-    'Liên Từ': 'text-teal-600 bg-teal-50'
+    'Liên Từ': 'text-teal-600 bg-teal-50',
+    'Thán Từ': 'text-red-600 bg-red-50',
+    'Trợ Từ': 'text-yellow-600 bg-yellow-50',
+    'Giới Từ': 'text-indigo-600 bg-indigo-50'
   };
+
+  const vietnameseWordType = wordTypeMapping[word.word_type] || word.word_type;
 
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 p-4">
@@ -94,14 +138,11 @@ const VocabularyListItem = ({ word, index }) => {
           <div className="flex-1">
             <div className="flex items-center space-x-3">
               <div className="text-2xl font-bold text-slate-700">
-                {word.japanese}
+                {word.word}
               </div>
               <div className="text-lg text-gray-600">
-                {word.hiragana}
+                {word.reading}
               </div>
-            </div>
-            <div className="text-sm text-gray-500 font-mono mt-1">
-              {word.romaji}
             </div>
           </div>
           
@@ -114,8 +155,8 @@ const VocabularyListItem = ({ word, index }) => {
           
           {/* Category */}
           <div className="flex-shrink-0">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${categoryColors[word.category] || 'text-gray-600 bg-gray-50'}`}>
-              {word.category}
+            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${categoryColors[vietnameseWordType] || 'text-gray-600 bg-gray-50'}`}>
+              {vietnameseWordType}
             </span>
           </div>
         </div>
@@ -123,7 +164,7 @@ const VocabularyListItem = ({ word, index }) => {
         {/* Action Button */}
         <div className="flex-shrink-0 ml-4">
           <button
-            onClick={() => playTextToSpeech(word.japanese)}
+            onClick={() => playTextToSpeech(word.word)}
             className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
           >
             <Volume2 className="w-4 h-4" />
@@ -135,13 +176,31 @@ const VocabularyListItem = ({ word, index }) => {
 };
 
 const VocabularyTable = ({ vocabulary, currentPage, itemsPerPage }) => {
+  // Mapping from English to Vietnamese
+  const wordTypeMapping = {
+    'noun': 'Danh Từ',
+    'verb': 'Động Từ',
+    'adjective': 'Tính Từ',
+    'pronoun': 'Đại Từ',
+    'adverb': 'Trạng Từ',
+    'conjunction': 'Liên Từ',
+    'interjection': 'Thán Từ',
+    'particle': 'Trợ Từ',
+    'preposition': 'Giới Từ',
+    'Tính Từ い': 'Tính Từ い',
+    'Tính Từ な': 'Tính Từ な'
+  };
+
   const categoryColors = {
     'Danh Từ': 'text-blue-600 bg-blue-50',
     'Động Từ': 'text-green-600 bg-green-50', 
     'Tính Từ': 'text-purple-600 bg-purple-50',
     'Đại Từ': 'text-pink-600 bg-pink-50',
     'Trạng Từ': 'text-orange-600 bg-orange-50',
-    'Liên Từ': 'text-teal-600 bg-teal-50'
+    'Liên Từ': 'text-teal-600 bg-teal-50',
+    'Thán Từ': 'text-red-600 bg-red-50',
+    'Trợ Từ': 'text-yellow-600 bg-yellow-50',
+    'Giới Từ': 'text-indigo-600 bg-indigo-50'
   };
 
   return (
@@ -156,13 +215,13 @@ const VocabularyTable = ({ vocabulary, currentPage, itemsPerPage }) => {
                 #
               </div>
               <div className="text-sm font-semibold text-gray-700">
-                Kanji/Katakana
+                Từ
               </div>
               <div className="text-sm font-semibold text-gray-700">
-                Hiragana
+                Cách đọc
               </div>
               <div className="text-sm font-semibold text-gray-700">
-                Romaji
+                JLPT
               </div>
               <div className="text-sm font-semibold text-gray-700">
                 Nghĩa
@@ -179,40 +238,36 @@ const VocabularyTable = ({ vocabulary, currentPage, itemsPerPage }) => {
           {/* Table Body with Fixed Height and Vertical Scroll (20 records max) */}
           <div className="max-h-[800px] overflow-y-auto">
             <div className="divide-y divide-gray-100">
-              {vocabulary.map((word, index) => (
-                <div 
-                  key={`${word.japanese}-${word.id}`}
-                  className="grid grid-cols-7 gap-4 px-4 py-4 hover:bg-gray-50 transition-colors duration-150"
-                >
+              {vocabulary.map((word, index) => {
+                const vietnameseWordType = wordTypeMapping[word.word_type] || word.word_type;
+                return (
+                  <div 
+                    key={`${word.word}-${word.id}`}
+                    className="grid grid-cols-7 gap-4 px-4 py-4 hover:bg-gray-50 transition-colors duration-150"
+                  >
                   {/* Index */}
                   <div className="text-sm text-gray-500 font-medium text-center">
                     {(currentPage - 1) * itemsPerPage + index + 1}
                   </div>
                   
-                  {/* Kanji/Katakana */}
+                  {/* Word */}
                   <div>
-                    {word.japanese !== word.hiragana ? (
-                      <div className="text-2xl font-bold text-slate-700">
-                        {word.japanese}
-                      </div>
-                    ) : (
-                      <div className="text-gray-400 text-sm">
-                        -
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* Hiragana */}
-                  <div>
-                    <div className="text-lg text-gray-600 font-medium">
-                      {word.hiragana}
+                    <div className="text-2xl font-bold text-slate-700">
+                      {word.word}
                     </div>
                   </div>
                   
-                  {/* Romaji */}
+                  {/* Reading */}
                   <div>
-                    <div className="text-sm text-gray-500 font-mono">
-                      {word.romaji}
+                    <div className="text-lg text-gray-600 font-medium">
+                      {word.reading}
+                    </div>
+                  </div>
+                  
+                  {/* JLPT Level */}
+                  <div>
+                    <div className="text-sm text-gray-500">
+                      {word.jlpt_level || '-'}
                     </div>
                   </div>
                   
@@ -225,22 +280,23 @@ const VocabularyTable = ({ vocabulary, currentPage, itemsPerPage }) => {
                   
                   {/* Category */}
                   <div>
-                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${categoryColors[word.category] || 'text-gray-600 bg-gray-50'}`}>
-                      {word.category}
+                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${categoryColors[vietnameseWordType] || 'text-gray-600 bg-gray-50'}`}>
+                      {vietnameseWordType}
                     </span>
                   </div>
                   
                   {/* Pronunciation Button */}
                   <div className="text-center">
                     <button
-                      onClick={() => playTextToSpeech(word.japanese)}
+                      onClick={() => playTextToSpeech(word.word)}
                       className="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
                     >
                       <Volume2 className="w-3 h-3" />
                     </button>
                   </div>
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -365,25 +421,48 @@ const PaginationControls = ({
 };
 
 const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }) => {
+  // Mapping from English to Vietnamese
+  const wordTypeMapping = {
+    'noun': 'Danh Từ',
+    'verb': 'Động Từ',
+    'adjective': 'Tính Từ',
+    'pronoun': 'Đại Từ',
+    'adverb': 'Trạng Từ',
+    'conjunction': 'Liên Từ',
+    'interjection': 'Thán Từ',
+    'particle': 'Trợ Từ',
+    'preposition': 'Giới Từ',
+    'Tính Từ い': 'Tính Từ い',
+    'Tính Từ な': 'Tính Từ な'
+  };
+
   const categoryColors = {
-    'all': 'from-gray-500 to-gray-600',
+    'all': 'from-slate-600 to-slate-700',
+    'Tất cả': 'from-slate-600 to-slate-700',
     'Danh Từ': 'from-blue-500 to-blue-600',
     'Động Từ': 'from-green-500 to-green-600',
     'Tính Từ': 'from-purple-500 to-purple-600',
+    'Tính Từ い': 'from-purple-400 to-purple-500',
+    'Tính Từ な': 'from-purple-600 to-purple-700',
     'Đại Từ': 'from-pink-500 to-pink-600',
     'Trạng Từ': 'from-orange-500 to-orange-600',
-    'Liên Từ': 'from-teal-500 to-teal-600'
+    'Liên Từ': 'from-teal-500 to-teal-600',
+    'Thán Từ': 'from-red-500 to-red-600',
+    'Trợ Từ': 'from-yellow-500 to-yellow-600',
+    'Giới Từ': 'from-indigo-500 to-indigo-600'
   };
 
   return (
     <div className="flex flex-wrap gap-2 justify-center">
-      {categories.map(category => (
+      {categories.map(category => {
+        const vietnameseCategory = category === 'all' ? 'Tất cả' : (wordTypeMapping[category] || category);
+        return (
         <button
           key={category}
           onClick={() => onCategoryChange(category)}
           className={`relative px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 overflow-hidden ${
             selectedCategory === category
-              ? `bg-gradient-to-r ${categoryColors[category]} text-white shadow-lg transform scale-105`
+              ? `bg-gradient-to-r ${categoryColors[vietnameseCategory]} text-white shadow-lg transform scale-105`
               : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
           }`}
         >
@@ -391,10 +470,11 @@ const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }) => {
             <div className="absolute inset-0 bg-white/20 animate-pulse rounded-xl" />
           )}
           <span className="relative">
-            {category === 'all' ? 'Tất cả' : category}
+            {vietnameseCategory}
           </span>
         </button>
-      ))}
+        );
+      })}
     </div>
   );
 };
@@ -535,32 +615,11 @@ const VocabularyPage = () => {
         </div>
 
         {/* JLPT Level Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/20">
-            <div className="flex space-x-2">
-              {['N5', 'N4'].map(level => (
-                <button
-                  key={level}
-                  onClick={() => setSelectedLevel(level)}
-                  className={`relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                    selectedLevel === level
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg transform scale-105'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
-                  }`}
-                >
-                  {selectedLevel === level && (
-                    <div className="absolute inset-0 bg-white/20 animate-pulse rounded-xl" />
-                  )}
-                  <span className="relative flex items-center space-x-2">
-                    <span>{level}</span>
-                    {level === 'N5' && <Users className="w-4 h-4" />}
-                    {level === 'N4' && <Star className="w-4 h-4" />}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <JLPTLevelTabs
+          selectedLevel={selectedLevel}
+          onLevelChange={setSelectedLevel}
+          className="vocabulary-level-tabs mb-12"
+        />
 
         
         {/* Filters Section */}
@@ -699,7 +758,7 @@ const VocabularyPage = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
                 {vocabulary.map((word, index) => (
                   <VocabularyCard 
-                    key={`${word.japanese}-${word.id}`} 
+                    key={`${word.word}-${word.id}`} 
                     word={word} 
                     index={(currentPage - 1) * itemsPerPage + index} 
                   />
@@ -711,7 +770,7 @@ const VocabularyPage = () => {
               <div className="space-y-4 mb-12">
                 {vocabulary.map((word, index) => (
                   <VocabularyListItem 
-                    key={`${word.japanese}-${word.id}`} 
+                    key={`${word.word}-${word.id}`} 
                     word={word} 
                     index={(currentPage - 1) * itemsPerPage + index} 
                   />

@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.11.0",
     "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.2.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.3.1",
@@ -26,6 +27,7 @@
     "passport-microsoft": "^2.1.0",
     "socket.io": "^4.8.1",
     "sqlite3": "^5.1.6",
+    "xlsx": "^0.18.5",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {

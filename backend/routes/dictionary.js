@@ -23,50 +23,65 @@ router.get('/search', [
     
     console.log(`Dictionary search: "${q}" (limit: ${limit}, offset: ${offset})`);
 
-    // Use FTS for search if available, otherwise fallback to LIKE
+    // Updated for new dictionary schema
     let searchSql = `
       SELECT 
-        id, entry_id, kanji, kana, romaji, meanings, 
-        parts_of_speech, jlpt_level, is_common, tags, examples,
+        id, word, reading, meaning, word_type, jlpt_level, tags,
         CASE 
-          WHEN kanji = ? THEN 10
-          WHEN kana = ? THEN 9
-          WHEN kanji LIKE ? THEN 8
-          WHEN kana LIKE ? THEN 7
-          WHEN meanings LIKE ? THEN 6
+          WHEN word = ? THEN 10
+          WHEN reading = ? THEN 9
+          WHEN word LIKE ? THEN 8
+          WHEN reading LIKE ? THEN 7
+          WHEN meaning LIKE ? THEN 6
           ELSE 1
         END as relevance_score
       FROM dictionary 
       WHERE (
-        kanji = ? OR 
-        kana = ? OR 
-        kanji LIKE ? OR 
-        kana LIKE ? OR 
-        meanings LIKE ? OR
-        romaji LIKE ?
+        word = ? OR 
+        reading = ? OR 
+        word LIKE ? OR 
+        reading LIKE ? OR 
+        meaning LIKE ?
       )
-      ORDER BY relevance_score DESC, is_common DESC, frequency_rank ASC
+      ORDER BY relevance_score DESC
       LIMIT ? OFFSET ?
     `;
 
     const searchPattern = `%${q}%`;
     const searchParams = [
       q, q, searchPattern, searchPattern, searchPattern, // for CASE
-      q, q, searchPattern, searchPattern, searchPattern, searchPattern, // for WHERE
+      q, q, searchPattern, searchPattern, searchPattern, // for WHERE
       limit, offset
     ];
 
     const results = await allQuery(searchSql, searchParams);
 
-    // Parse JSON fields
-    const processedResults = results.map(entry => ({
-      ...entry,
-      meanings: entry.meanings ? JSON.parse(entry.meanings) : [],
-      parts_of_speech: entry.parts_of_speech ? JSON.parse(entry.parts_of_speech) : [],
-      tags: entry.tags ? JSON.parse(entry.tags) : [],
-      examples: entry.examples ? JSON.parse(entry.examples) : [],
-      is_common: Boolean(entry.is_common)
-    }));
+    // Process results for frontend compatibility
+    const processedResults = results.map(entry => {
+      let parsedTags = {};
+      try {
+        parsedTags = entry.tags ? JSON.parse(entry.tags) : {};
+      } catch (e) {
+        parsedTags = {};
+      }
+
+      return {
+        id: entry.id,
+        word: entry.word,
+        reading: entry.reading,
+        meaning: entry.meaning,
+        word_type: entry.word_type,
+        jlpt_level: entry.jlpt_level,
+        tags: parsedTags,
+        // Add compatibility fields for frontend
+        kanji: entry.word,
+        kana: entry.reading,
+        meanings: entry.meaning.split('; '),
+        parts_of_speech: entry.word_type ? entry.word_type.split(', ') : [],
+        is_common: parsedTags.is_common || false,
+        entry_id: parsedTags.entry_id || entry.id.toString()
+      };
+    });
 
     res.json({
       success: true,
@@ -102,14 +117,30 @@ router.get('/:id', async (req, res) => {
       });
     }
 
-    // Parse JSON fields
+    // Process for frontend compatibility
+    let parsedTags = {};
+    try {
+      parsedTags = entry.tags ? JSON.parse(entry.tags) : {};
+    } catch (e) {
+      parsedTags = {};
+    }
+
     const processedEntry = {
-      ...entry,
-      meanings: entry.meanings ? JSON.parse(entry.meanings) : [],
-      parts_of_speech: entry.parts_of_speech ? JSON.parse(entry.parts_of_speech) : [],
-      tags: entry.tags ? JSON.parse(entry.tags) : [],
-      examples: entry.examples ? JSON.parse(entry.examples) : [],
-      is_common: Boolean(entry.is_common)
+      id: entry.id,
+      word: entry.word,
+      reading: entry.reading,
+      meaning: entry.meaning,
+      word_type: entry.word_type,
+      jlpt_level: entry.jlpt_level,
+      tags: parsedTags,
+      // Add compatibility fields for frontend
+      kanji: entry.word,
+      kana: entry.reading,
+      meanings: entry.meaning.split('; '),
+      parts_of_speech: entry.word_type ? entry.word_type.split(', ') : [],
+      is_common: parsedTags.is_common || false,
+      entry_id: parsedTags.entry_id || entry.id.toString(),
+      examples: parsedTags.examples || []
     };
 
     res.json({
@@ -132,19 +163,25 @@ router.get('/stats/overview', async (req, res) => {
     const stats = await allQuery(`
       SELECT 
         jlpt_level,
-        COUNT(*) as count,
-        COUNT(CASE WHEN is_common = 1 THEN 1 END) as common_count
+        COUNT(*) as count
       FROM dictionary 
       GROUP BY jlpt_level
       ORDER BY jlpt_level
     `);
 
     const totalCount = await getQuery('SELECT COUNT(*) as total FROM dictionary');
+    
+    // Count entries with is_common flag in tags
+    const commonCount = await getQuery(`
+      SELECT COUNT(*) as count FROM dictionary 
+      WHERE tags LIKE '%"is_common":true%'
+    `);
 
     res.json({
       success: true,
       data: {
         total: totalCount.total,
+        common: commonCount.count,
         by_jlpt: stats
       }
     });

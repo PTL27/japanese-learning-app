@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Star, User, Settings, LogOut, ChevronDown, Search, PenTool, Trophy, Award, Users } from 'lucide-react';
+import { Home, BookOpen, Star, User, Settings, LogOut, ChevronDown, Search, PenTool, Trophy, Award, Users, MessageCircle, FileText } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import NotificationCenter from './NotificationCenter';
 
 const Navigation = () => {
   const { user, logout } = useAuth();
@@ -16,11 +17,13 @@ const Navigation = () => {
     { id: 'home', name: 'Trang chủ', icon: Home, color: 'from-blue-500 to-blue-600' },
     { id: 'alphabet', name: 'Bảng chữ cái', icon: BookOpen, color: 'from-purple-500 to-purple-600' },
     { id: 'vocabulary', name: 'Từ vựng', icon: Star, color: 'from-green-500 to-green-600' },
+    { id: 'grammar', name: 'Ngữ pháp', icon: FileText, color: 'from-orange-500 to-red-600' },
     { id: 'dictionary', name: 'Từ điển', icon: Search, color: 'from-indigo-500 to-blue-600' },
     { id: 'kanji', name: 'Kanji', icon: PenTool, color: 'from-purple-600 to-indigo-600' },
     { id: 'quiz-hub', name: 'Quiz Hub', icon: Trophy, color: 'from-purple-500 to-pink-600' },
     { id: 'weekly-challenge', name: 'Weekly Challenge', icon: Award, color: 'from-yellow-500 to-orange-600' },
-    { id: 'friends', name: 'Bạn bè', icon: Users, color: 'from-green-500 to-teal-600' }
+    { id: 'friends', name: 'Bạn bè', icon: Users, color: 'from-green-500 to-teal-600' },
+    { id: 'chat', name: 'Chat', icon: MessageCircle, color: 'from-indigo-500 to-purple-600' }
   ];
 
   const handleLogout = async () => {
@@ -70,11 +73,13 @@ const Navigation = () => {
             
             {/* User Menu - Only show when authenticated */}
             {user && (
-              <div className="relative ml-6">
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all duration-200"
-                >
+              <div className="flex items-center space-x-4">
+                <NotificationCenter />
+                <div className="relative">
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all duration-200"
+                  >
                   <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {user.name?.charAt(0).toUpperCase() || 'U'}
                   </div>
@@ -128,6 +133,7 @@ const Navigation = () => {
                     </button>
                   </div>
                 )}
+                </div>
               </div>
             )}
           </div>

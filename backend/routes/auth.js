@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const crypto = require('crypto');
-const { runQuery, getQuery } = require('../database/database');
+const { runQuery, getQuery, runTransaction } = require('../database/database');
 const router = express.Router();
 
 // Generate JWT token
@@ -37,8 +37,16 @@ router.post('/signup', [
 
     const { name, email, password, age, phone, address, japaneseLevel } = req.body;
 
-    // Check if user already exists
-    const existingUser = await getQuery('SELECT id FROM users WHERE email = ?', [email]);
+    // Hash password
+    const saltRounds = 12;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
+
+    // Check if email already exists first
+    const existingUser = await getQuery(
+      'SELECT id FROM users WHERE email = ?',
+      [email]
+    );
+
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -46,11 +54,7 @@ router.post('/signup', [
       });
     }
 
-    // Hash password
-    const saltRounds = 12;
-    const passwordHash = await bcrypt.hash(password, saltRounds);
-
-    // Create user
+    // Create user (without transaction to avoid locks)
     const result = await runQuery(
       `INSERT INTO users (name, email, password_hash, age, phone, address, japanese_level) 
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -84,6 +88,15 @@ router.post('/signup', [
 
   } catch (error) {
     console.error('Signup error:', error);
+    
+    // Handle specific errors
+    if (error.message === 'Email đã được sử dụng') {
+      return res.status(400).json({
+        success: false,
+        message: 'Email đã được sử dụng'
+      });
+    }
+    
     res.status(500).json({
       success: false,
       message: 'Lỗi server khi đăng ký'

@@ -9,6 +9,7 @@ import QuizMainPage from './QuizMainPage';
 import VocabularyN4Page from './VocabularyN4Page';
 import QuizGameScreen from './QuizGameScreen';
 import QuizResultScreen from './QuizResultScreen';
+import { getLevelColor } from '../constants/jlptLevels';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5001/api';
 
@@ -187,18 +188,7 @@ const UnlockTestScreen = ({ currentLevel, onBack, onUnlockSuccess }) => {
 
 // Level Tab Component
 const LevelTab = ({ level, isActive, isLocked, stats, onClick }) => {
-  const getColor = () => {
-    switch(level) {
-      case 'N5': return 'blue';
-      case 'N4': return 'orange'; 
-      case 'N3': return 'purple';
-      case 'N2': return 'green';
-      case 'N1': return 'red';
-      default: return 'gray';
-    }
-  };
-
-  const color = getColor();
+  const levelColor = getLevelColor(level);
 
   return (
     <button
@@ -207,9 +197,14 @@ const LevelTab = ({ level, isActive, isLocked, stats, onClick }) => {
         isLocked 
           ? 'bg-gray-100 text-gray-400 cursor-not-allowed' :
         isActive 
-          ? `bg-${color}-500 text-white shadow-lg` 
-          : `bg-white text-${color}-600 hover:bg-${color}-50 border border-${color}-200`
+          ? 'text-white shadow-lg' 
+          : 'bg-white hover:bg-gray-50 border-2'
       }`}
+      style={{
+        backgroundColor: isActive ? levelColor : 'white',
+        color: isActive ? 'white' : levelColor,
+        borderColor: isLocked ? '#d1d5db' : levelColor
+      }}
       disabled={isLocked}
     >
       <div className="flex items-center space-x-2">
@@ -221,7 +216,7 @@ const LevelTab = ({ level, isActive, isLocked, stats, onClick }) => {
         <div className="mt-1 text-xs">
           <div>{stats.completed}/10</div>
           {stats.average > 0 && (
-            <div className={isActive ? 'text-white/80' : `text-${color}-500`}>
+            <div className={isActive ? 'text-white/80' : 'opacity-70'}>
               {stats.average.toFixed(0)}%
             </div>
           )}
@@ -503,26 +498,28 @@ const VocabularyQuizPage = ({ onBack }) => {
           </div>
         </div>
 
-        {/* Level Navigation */}
-        <div className="flex flex-wrap gap-4 mb-8">
-          {['N5', 'N4', 'N3', 'N2', 'N1'].map((level) => {
-            const levelStats = allStats[level];
-            const formattedStats = levelStats ? {
-              completed: levelStats.total_completed,
-              average: levelStats.average_score
-            } : null;
-            
-            return (
-              <LevelTab
-                key={level}
-                level={level}
-                isActive={currentLevel === level}
-                isLocked={isLevelLocked(level)}
-                stats={formattedStats}
-                onClick={() => handleLevelSelect(level)}
-              />
-            );
-          })}
+        {/* Level Navigation - Using standardized JLPT colors */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-wrap gap-4">
+            {['N5', 'N4', 'N3', 'N2', 'N1'].map((level) => {
+              const levelStats = allStats[level];
+              const formattedStats = levelStats ? {
+                completed: levelStats.total_completed,
+                average: levelStats.average_score
+              } : null;
+              
+              return (
+                <LevelTab
+                  key={level}
+                  level={level}
+                  isActive={currentLevel === level}
+                  isLocked={isLevelLocked(level)}
+                  stats={formattedStats}
+                  onClick={() => handleLevelSelect(level)}
+                />
+              );
+            })}
+          </div>
         </div>
 
         {/* Current Level Info */}

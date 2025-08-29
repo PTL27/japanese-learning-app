@@ -73,7 +73,7 @@ router.post('/generate', authenticateToken, async (req, res) => {
       console.log('🔄 Found active uncompleted session, returning existing:', activeSession.id);
       // Return the existing active session instead of creating a new one
       const existingQuestions = await allQuery(`
-        SELECT qq.*, v.japanese, v.hiragana 
+        SELECT qq.*, v.word as japanese, v.reading as hiragana 
         FROM quiz_questions qq
         JOIN vocabulary v ON qq.vocabulary_id = v.id
         WHERE qq.session_id = ?
@@ -127,7 +127,7 @@ router.post('/generate', authenticateToken, async (req, res) => {
 
     // Get random 10 vocabulary words from the specified JLPT level
     const vocabularyWords = await allQuery(`
-      SELECT id, japanese, hiragana, meaning, category 
+      SELECT id, word as japanese, reading as hiragana, meaning, word_type as category 
       FROM vocabulary 
       WHERE jlpt_level = ? 
       ORDER BY RANDOM() 
@@ -320,7 +320,7 @@ router.post('/submit', authenticateToken, async (req, res) => {
           UPDATE quiz_questions 
           SET user_answer = ?, is_correct = ?, answered_at = datetime('now')
           WHERE id = ?
-        `, [userAnswer, isCorrect, question.id]);
+        `, [userAnswer, isCorrect ? 1 : 0, question.id]);
       }
     }
 
@@ -361,8 +361,8 @@ router.post('/submit', authenticateToken, async (req, res) => {
     const detailedResults = await allQuery(`
       SELECT 
         qq.*,
-        v.japanese,
-        v.hiragana,
+        v.word as japanese,
+        v.reading as hiragana,
         v.meaning as correct_meaning
       FROM quiz_questions qq
       JOIN vocabulary v ON qq.vocabulary_id = v.id

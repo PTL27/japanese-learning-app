@@ -30,9 +30,9 @@ router.get('/', [
     } = req.query;
 
     let sql = `
-      SELECT id, japanese, hiragana, romaji, meaning, category, 
-             jlpt_level, difficulty, frequency_rank,
-             example_sentence_jp, example_sentence_vn
+      SELECT id, word, reading, meaning, word_type, 
+             jlpt_level, difficulty_level, example_sentence, example_translation, 
+             tags, user_id, is_learned, review_count, last_reviewed
       FROM vocabulary 
       WHERE 1=1
     `;
@@ -45,18 +45,18 @@ router.get('/', [
     }
 
     if (category) {
-      sql += ' AND category = ?';
+      sql += ' AND word_type = ?';
       params.push(category);
     }
 
     if (search) {
-      sql += ' AND (japanese LIKE ? OR hiragana LIKE ? OR romaji LIKE ? OR meaning LIKE ?)';
+      sql += ' AND (word LIKE ? OR reading LIKE ? OR meaning LIKE ?)';
       const searchPattern = `%${search}%`;
-      params.push(searchPattern, searchPattern, searchPattern, searchPattern);
+      params.push(searchPattern, searchPattern, searchPattern);
     }
 
     // Add ordering and pagination
-    sql += ' ORDER BY frequency_rank ASC, japanese ASC';
+    sql += ' ORDER BY word ASC';
     
     const offset = (page - 1) * limit;
     sql += ' LIMIT ? OFFSET ?';
@@ -76,14 +76,14 @@ router.get('/', [
     }
 
     if (category) {
-      countSql += ' AND category = ?';
+      countSql += ' AND word_type = ?';
       countParams.push(category);
     }
 
     if (search) {
-      countSql += ' AND (japanese LIKE ? OR hiragana LIKE ? OR romaji LIKE ? OR meaning LIKE ?)';
+      countSql += ' AND (word LIKE ? OR reading LIKE ? OR meaning LIKE ?)';
       const searchPattern = `%${search}%`;
-      countParams.push(searchPattern, searchPattern, searchPattern, searchPattern);
+      countParams.push(searchPattern, searchPattern, searchPattern);
     }
 
     const [vocabulary, countResult] = await Promise.all([
@@ -120,10 +120,11 @@ router.get('/', [
 router.get('/categories', async (req, res) => {
   try {
     const categories = await allQuery(`
-      SELECT category, COUNT(*) as count 
+      SELECT word_type as category, COUNT(*) as count 
       FROM vocabulary 
-      GROUP BY category 
-      ORDER BY category
+      WHERE word_type IS NOT NULL
+      GROUP BY word_type 
+      ORDER BY word_type
     `);
 
     res.json({
@@ -364,20 +365,22 @@ router.get('/stats/overview', async (req, res) => {
     const stats = await allQuery(`
       SELECT 
         jlpt_level,
-        category,
+        word_type as category,
         COUNT(*) as count,
-        AVG(difficulty) as avg_difficulty
+        AVG(difficulty_level) as avg_difficulty
       FROM vocabulary 
-      GROUP BY jlpt_level, category
-      ORDER BY jlpt_level, category
+      GROUP BY jlpt_level, word_type
+      ORDER BY jlpt_level, word_type
     `);
 
     const totalCount = await getQuery('SELECT COUNT(*) as total FROM vocabulary');
+    const learnedCount = await getQuery('SELECT COUNT(*) as count FROM vocabulary WHERE is_learned = 1');
 
     res.json({
       success: true,
       data: {
         total: totalCount.total,
+        learned: learnedCount.count,
         byLevelAndCategory: stats
       }
     });

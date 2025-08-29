@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getQuery, allQuery, runQuery } = require('../database/database');
 const { authenticateToken } = require('../middleware/auth');
+const notificationService = require('../services/notificationService');
 
 // Get all friends for a user
 router.get('/', authenticateToken, async (req, res) => {
@@ -169,6 +170,18 @@ router.post('/request', authenticateToken, async (req, res) => {
       VALUES (?, ?, 'pending')
     `, [requesterId, targetUserId]);
     
+    // Send notification to target user
+    try {
+      const requester = await getQuery('SELECT name FROM users WHERE id = ?', [requesterId]);
+      await notificationService.notifyFriendRequest(
+        targetUserId, 
+        requesterId, 
+        requester.name
+      );
+    } catch (notifError) {
+      console.error('Error sending friend request notification:', notifError);
+    }
+    
     res.json({
       success: true,
       message: `Friend request sent to ${targetUser.name}`,
@@ -262,6 +275,19 @@ router.post('/respond', authenticateToken, async (req, res) => {
       SET status = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE id = ?
     `, [newStatus, requestId]);
+    
+    // Send notification if request was accepted
+    if (action === 'accept') {
+      try {
+        const accepter = await getQuery('SELECT name FROM users WHERE id = ?', [userId]);
+        await notificationService.notifyFriendAccepted(
+          request.requester_id,
+          accepter.name
+        );
+      } catch (notifError) {
+        console.error('Error sending friend accepted notification:', notifError);
+      }
+    }
     
     const message = action === 'accept' 
       ? `You are now friends with ${request.requester_name}`
