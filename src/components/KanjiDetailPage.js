@@ -78,9 +78,16 @@ const KanjiDetailPage = ({ kanjiCharacter, onBack, jlptLevel }) => {
     );
   }
 
-  const meanings = kanjiData.meanings?.en || [];
+  // Ưu tiên nghĩa tiếng Việt, fallback sang tiếng Anh nếu không có
+  const meanings = kanjiData.meanings?.vi || kanjiData.meanings?.en || [];
   const onReadings = kanjiData.on_readings || [];
   const kunReadings = kanjiData.kun_readings || [];
+  
+  // Lấy âm Hán Việt từ name_readings nếu có
+  const hanVietReadings = kanjiData.name_readings ? 
+    kanjiData.name_readings.filter(reading => 
+      /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ\s]+$/i.test(reading)
+    ) : [];
   const examples = kanjiData.examples || [];
 
   return (
@@ -119,24 +126,27 @@ const KanjiDetailPage = ({ kanjiCharacter, onBack, jlptLevel }) => {
             </button>
           </div>
 
-          {/* Basic Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="text-center p-4 bg-gray-50 rounded-xl">
-              <div className="text-sm text-gray-500 mb-1">Số nét</div>
-              <div className="text-2xl font-bold text-gray-800">{kanjiData.stroke_count || 'N/A'}</div>
-            </div>
-            
-            <div className="text-center p-4 bg-gray-50 rounded-xl">
-              <div className="text-sm text-gray-500 mb-1">Cấp độ</div>
-              <div className="text-2xl font-bold text-gray-800">{kanjiData.grade_level || 'N/A'}</div>
-            </div>
-            
-            <div className="text-center p-4 bg-gray-50 rounded-xl">
-              <div className="text-sm text-gray-500 mb-1">Tần suất</div>
-              <div className="text-2xl font-bold text-gray-800">{kanjiData.frequency_rank || 'N/A'}</div>
+        </div>
+
+        {/* Hán Việt Readings - Moved up */}
+        {hanVietReadings.length > 0 && (
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <BookOpen className="w-6 h-6 mr-3 text-red-500" />
+              Âm Hán Việt
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              {hanVietReadings.map((reading, index) => (
+                <div 
+                  key={index} 
+                  className="inline-flex items-center px-6 py-3 bg-red-50 text-red-700 rounded-full border border-red-200 font-semibold text-lg"
+                >
+                  <span>{reading}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
 
         {/* Meanings */}
         {meanings.length > 0 && (
@@ -157,6 +167,7 @@ const KanjiDetailPage = ({ kanjiCharacter, onBack, jlptLevel }) => {
             </div>
           </div>
         )}
+
 
         {/* Readings */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">

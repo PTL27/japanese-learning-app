@@ -104,16 +104,28 @@ const KanjiPage = () => {
         params.append('search', search);
       }
       
-      // Temporary fix: use grade endpoint while backend level endpoint is being fixed
-      // For now, let's try N5 -> grade 1 as it has the most basic kanji
-      const gradeMapping = { 'N5': 1, 'N4': 2, 'N3': 3, 'N2': 4, 'N1': 5 };
-      const grade = gradeMapping[level] || 1;
-      const response = await fetch(`http://localhost:5001/api/kanji/grade/${grade}?${params}`);
+      // Use JLPT endpoint with new logic
+      const levelNumber = level.replace('N', '');
+      const response = await fetch(`http://localhost:5001/api/kanji/jlpt/${levelNumber}?${params}`);
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
-          // Handle pagination for grade endpoint (doesn't have built-in pagination)
-          const allData = data.data || [];
+          // Handle pagination for JLPT endpoint (doesn't have built-in pagination)
+          let allData = data.data || [];
+          
+          // Apply search filter if provided
+          if (search) {
+            allData = allData.filter(kanji => 
+              kanji.character.includes(search) ||
+              (kanji.meanings && kanji.meanings.some(meaning => 
+                typeof meaning === 'string' ? meaning.toLowerCase().includes(search.toLowerCase()) :
+                meaning.en && meaning.en.some(en => en.toLowerCase().includes(search.toLowerCase()))
+              )) ||
+              (kanji.on_readings && kanji.on_readings.some(reading => reading.includes(search))) ||
+              (kanji.kun_readings && kanji.kun_readings.some(reading => reading.includes(search)))
+            );
+          }
+          
           const startIndex = (page - 1) * itemsPerPage;
           const endIndex = startIndex + itemsPerPage;
           const pageData = allData.slice(startIndex, endIndex);
@@ -340,11 +352,20 @@ const KanjiPage = () => {
   };
 
   const KanjiCard = ({ kanji }) => {
-    const meanings = kanji.meanings || [];
+    // Ưu tiên nghĩa tiếng Việt, fallback sang tiếng Anh
+    const meanings = (kanji.meanings && typeof kanji.meanings === 'object') 
+      ? (kanji.meanings.vi || kanji.meanings.en || [])
+      : (kanji.meanings || []);
     const onReadings = kanji.on_readings || [];
     const kunReadings = kanji.kun_readings || [];
     const examples = kanji.examples || [];
     const strokeCount = kanji.stroke_count || 0;
+    
+    // Lấy âm Hán Việt từ name_readings
+    const hanVietReadings = kanji.name_readings ? 
+      kanji.name_readings.filter(reading => 
+        /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ\s]+$/i.test(reading)
+      ) : [];
     
     return (
       <div className="bg-white rounded-3xl shadow-2xl p-8 mb-8 border border-gray-100 hover:shadow-3xl transition-all duration-500">
@@ -403,6 +424,23 @@ const KanjiPage = () => {
                   {meanings.slice(0, 8).map((meaning, idx) => (
                     <span key={idx} className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium border border-blue-200">
                       {meaning}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Hán Việt readings */}
+            {hanVietReadings.length > 0 && (
+              <div>
+                <h3 className="flex items-center text-xl font-bold text-gray-800 mb-4">
+                  <BookOpen className="w-6 h-6 mr-3 text-red-600" />
+                  Âm Hán Việt
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {hanVietReadings.slice(0, 6).map((reading, idx) => (
+                    <span key={idx} className="bg-red-100 text-red-800 px-4 py-2 rounded-full font-medium border border-red-200 text-lg">
+                      {reading}
                     </span>
                   ))}
                 </div>
@@ -758,15 +796,27 @@ const KanjiPage = () => {
                       
                       {kanji.meanings && kanji.meanings.length > 0 && (
                         <div className="text-sm text-gray-600 mb-2 line-clamp-2">
-                          {kanji.meanings.slice(0, 2).join(', ')}
+                          {(() => {
+                            // Ưu tiên nghĩa tiếng Việt
+                            const displayMeanings = (typeof kanji.meanings === 'object') 
+                              ? (kanji.meanings.vi || kanji.meanings.en || [])
+                              : kanji.meanings;
+                            return displayMeanings.slice(0, 2).join(', ');
+                          })()}
                         </div>
                       )}
                       
-                      {kanji.stroke_count && (
-                        <div className="text-xs text-gray-500">
-                          {kanji.stroke_count} strokes
-                        </div>
-                      )}
+                      {(() => {
+                        const hanViet = kanji.name_readings ? 
+                          kanji.name_readings.filter(reading => 
+                            /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ\s]+$/i.test(reading)
+                          ) : [];
+                        return hanViet.length > 0 && (
+                          <div className="text-xs text-red-600 font-medium">
+                            {hanViet.slice(0, 2).join(', ')}
+                          </div>
+                        );
+                      })()}
                       
                       <div className="mt-2 text-xs text-orange-600 font-medium">
                         Click for details

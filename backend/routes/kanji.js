@@ -152,6 +152,7 @@ router.get('/grade/:level', async (req, res) => {
       meanings: kanji.meanings ? JSON.parse(kanji.meanings) : [],
       on_readings: kanji.on_readings ? JSON.parse(kanji.on_readings) : [],
       kun_readings: kanji.kun_readings ? JSON.parse(kanji.kun_readings) : [],
+      name_readings: kanji.name_readings ? JSON.parse(kanji.name_readings) : [],
       stroke_count: kanji.stroke_count,
       frequency_rank: kanji.frequency_rank
     }));
@@ -247,6 +248,7 @@ router.get('/level/:level', [
       meanings: kanji.meanings ? JSON.parse(kanji.meanings) : [],
       on_readings: kanji.on_readings ? JSON.parse(kanji.on_readings) : [],
       kun_readings: kanji.kun_readings ? JSON.parse(kanji.kun_readings) : [],
+      name_readings: kanji.name_readings ? JSON.parse(kanji.name_readings) : [],
       stroke_count: kanji.stroke_count,
       grade_level: kanji.grade_level,
       frequency_rank: kanji.frequency_rank,
@@ -277,7 +279,7 @@ router.get('/level/:level', [
   }
 });
 
-// Get kanji by JLPT level (legacy)
+// Get kanji by JLPT level (with new mapping logic)
 router.get('/jlpt/:level', async (req, res) => {
   try {
     const { level } = req.params;
@@ -292,20 +294,70 @@ router.get('/jlpt/:level', async (req, res) => {
 
     console.log(`Kanji JLPT search: N${jlptLevel}`);
 
-    const results = await allQuery(`
-      SELECT * FROM kanji 
-      WHERE jlpt_level = ? 
-      ORDER BY frequency_rank ASC, character ASC
-    `, [jlptLevel]);
+    let sqlQuery;
+    let params;
+
+    // Apply new JLPT mapping logic
+    switch (jlptLevel) {
+      case 1: // N1 - original level 1
+        sqlQuery = `
+          SELECT * FROM kanji 
+          WHERE jlpt_level = 1 
+          ORDER BY frequency_rank ASC, character ASC
+        `;
+        params = [];
+        break;
+        
+      case 2: // N2 - level 2 with grade >= 5 or null
+        sqlQuery = `
+          SELECT * FROM kanji 
+          WHERE jlpt_level = 2 AND (grade_level IS NULL OR grade_level >= 5)
+          ORDER BY frequency_rank ASC, character ASC
+        `;
+        params = [];
+        break;
+        
+      case 3: // N3 - level 2 with grade < 5
+        sqlQuery = `
+          SELECT * FROM kanji 
+          WHERE jlpt_level = 2 AND grade_level IS NOT NULL AND grade_level < 5
+          ORDER BY grade_level ASC, frequency_rank ASC, character ASC
+        `;
+        params = [];
+        break;
+        
+      case 4: // N4 - original level 3
+        sqlQuery = `
+          SELECT * FROM kanji 
+          WHERE jlpt_level = 3 
+          ORDER BY frequency_rank ASC, character ASC
+        `;
+        params = [];
+        break;
+        
+      case 5: // N5 - original level 4
+        sqlQuery = `
+          SELECT * FROM kanji 
+          WHERE jlpt_level = 4 
+          ORDER BY frequency_rank ASC, character ASC
+        `;
+        params = [];
+        break;
+    }
+
+    const results = await allQuery(sqlQuery, params);
 
     const processedResults = results.map(kanji => ({
       character: kanji.character,
       meanings: kanji.meanings ? JSON.parse(kanji.meanings) : [],
       on_readings: kanji.on_readings ? JSON.parse(kanji.on_readings) : [],
       kun_readings: kanji.kun_readings ? JSON.parse(kanji.kun_readings) : [],
+      name_readings: kanji.name_readings ? JSON.parse(kanji.name_readings) : [],
       stroke_count: kanji.stroke_count,
       grade_level: kanji.grade_level,
-      frequency_rank: kanji.frequency_rank
+      frequency_rank: kanji.frequency_rank,
+      jlpt_level: kanji.jlpt_level, // Original level for reference
+      stroke_order_data: kanji.stroke_order_data ? JSON.parse(kanji.stroke_order_data) : null
     }));
 
     res.json({
